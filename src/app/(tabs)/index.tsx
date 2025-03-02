@@ -1,4 +1,5 @@
 import { Box } from '@/components/Box'
+import { Icon } from '@/components/Icon'
 import { Link } from "expo-router"
 import { StyleSheet, Text, View } from "react-native"
 import styled from "styled-components/native"
@@ -19,6 +20,7 @@ export default function Index() {
       <Box style={{ width: 100, height: 50, padding: 10 }} backgroundColor="green">
         <Text>Teste</Text>
       </Box>
+      <Icon name="home" color='pink' size={32} />
     </View>
   )
 }
