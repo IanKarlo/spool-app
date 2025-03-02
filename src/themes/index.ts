@@ -18,6 +18,9 @@ declare module 'styled-components/native' {
       white: string
       background: string
     }
+    radius: {
+      default: number
+    }
     spacing: {
       4: 4
       8: 8
