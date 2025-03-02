@@ -1,21 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native"
 
 export default function Index() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Landing Page</Text>
-        </View>
-    )
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Landing Page</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold'
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  }
 })
