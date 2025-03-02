@@ -16,7 +16,7 @@ export default function Index() {
       <Text style={styles.title}>Index Page!!!</Text>
       <Link href="/landing"> Landing Page</Link>
       <TestButton><Text>Teste</Text></TestButton>
-      <Box width={100} height={100} backgroundColor="blue">
+      <Box style={{ width: 100, height: 50, padding: 10 }} backgroundColor="green">
         <Text>Teste</Text>
       </Box>
     </View>
