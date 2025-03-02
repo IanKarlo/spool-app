@@ -1,4 +1,5 @@
 import { Box } from '@/components/Box'
+import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
 import { Typography } from '@/components/Typography'
 import { Link } from "expo-router"
@@ -18,11 +19,25 @@ export default function Index() {
       <Text style={styles.title}>Index Page!!!</Text>
       <Link href="/landing"> Landing Page</Link>
       <TestButton><Text>Teste</Text></TestButton>
-      <Box style={{ width: 100, height: 50, padding: 10 }} backgroundColor="green">
+      <Box
+        style={{ width: 100, height: 50, padding: 10 }}
+        bgColor='blue'
+      >
         <Text>Teste</Text>
       </Box>
-      <Icon name="home" color='pink' size={32} />
+      <Icon name="home" color='blue' size={32} />
       <Typography color='black' style={{ fontSize: 24 }}  >Teste da fonte</Typography>
+      <Button
+        text="Press me"
+        onPress={() => console.log('pressed')}
+      />
+
+      <Button
+        variant="outlined"
+        color="blue"
+        text="Outlined Button"
+        onPress={() => console.log('pressed outlined')}
+      />
     </View>
   )
 }
