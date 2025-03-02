@@ -1,5 +1,6 @@
 import { Box } from '@/components/Box'
 import { Icon } from '@/components/Icon'
+import { Typography } from '@/components/Typography'
 import { Link } from "expo-router"
 import { StyleSheet, Text, View } from "react-native"
 import styled from "styled-components/native"
@@ -21,6 +22,7 @@ export default function Index() {
         <Text>Teste</Text>
       </Box>
       <Icon name="home" color='pink' size={32} />
+      <Typography color='black' style={{ fontSize: 24 }}  >Teste da fonte</Typography>
     </View>
   )
 }
