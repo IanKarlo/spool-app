@@ -1,6 +1,8 @@
 import { Stack } from 'expo-router';
 import { usePushNotifications } from '@/hooks/useNotification';
 import { useEffect } from 'react';
+import { ThemeProvider } from 'styled-components/native'
+import { theme } from '@/themes'
 
 export default function RootLayout() {
   // const { expoPushToken} = usePushNotifications();
@@ -12,9 +14,11 @@ export default function RootLayout() {
   // }, [expoPushToken])
 
   return (
-    <Stack>
+    <ThemeProvider theme={theme}>
+      <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
-    </Stack>
+      </Stack>
+    </ThemeProvider>
   );
 }
