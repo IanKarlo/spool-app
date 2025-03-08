@@ -1,0 +1,31 @@
+import { Box } from '@/components/Box'
+import type { Colors } from '@/themes'
+import React from 'react'
+import { Image, type ImageSourcePropType } from 'react-native'
+import { useTheme } from 'styled-components'
+
+interface ProfileProps {
+  size?: number
+  uri: string
+  color: Colors
+}
+
+export default function Profile({ size = 64, color, uri }: ProfileProps) {
+  const theme = useTheme()
+  const borderThickness = size/32
+  return (
+    <Box
+      bgColor='white'
+      style={{
+          borderRadius: size*2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderColor: theme.colors[color as Colors],
+          borderWidth: borderThickness,
+          width: size+borderThickness*4,
+          height: size+borderThickness*4,
+        }}>
+      <Image source={{ uri }} style={{ width: size, height: size, borderRadius: 200 }} />
+    </Box>
+  )
+}
