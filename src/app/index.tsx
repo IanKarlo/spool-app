@@ -12,17 +12,17 @@ export default function Index() {
       />
       <Button
         text="EDUCATORS"
-        color="green"
+        color="purple"
         onPress={() => router.push('./educators')}
       />
       <Button
         text="THERAPISTS"
-        color="blue"
+        color="green"
         onPress={() => router.push('./therapists')}
       />
       <Button
         text="COMPONENTS"
-        color="purple"
+        color="blue"
         onPress={() => router.push('./components')}
       />
     </View>
