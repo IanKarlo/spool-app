@@ -1,4 +1,4 @@
-import { Button } from '@/components/Button'
+import { Button } from '@/components/atomics/Button'
 import { router } from 'expo-router'
 import React from 'react'
 import { Text, View } from 'react-native'

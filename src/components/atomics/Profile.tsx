@@ -1,4 +1,4 @@
-import { Box } from '@/components/Box'
+import { Box } from '@/components/atomics/Box'
 import type { Colors } from '@/themes'
 import React from 'react'
 import { Image, type ImageSourcePropType } from 'react-native'

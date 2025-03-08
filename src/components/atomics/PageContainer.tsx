@@ -1,4 +1,4 @@
-import { Box } from '@/components/Box'
+import { Box } from '@/components/atomics/Box'
 import type { ViewStyle } from "react-native"
 import type { DefaultTheme } from 'styled-components'
 import styled from 'styled-components/native'

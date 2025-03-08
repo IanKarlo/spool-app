@@ -1,13 +1,13 @@
-import { Box } from '@/components/Box'
-import { Button } from '@/components/Button'
-import { Icon } from '@/components/Icon'
-import { PageContainer } from '@/components/PageContainer'
-import { Typography } from '@/components/Typography'
+import { Box } from '@/components/atomics/Box'
+import { Button } from '@/components/atomics/Button'
+import { Icon } from '@/components/atomics/Icon'
+import { PageContainer } from '@/components/atomics/PageContainer'
+import { Typography } from '@/components/atomics/Typography'
 import { Link, Stack } from "expo-router"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import styled from "styled-components/native"
-import { TextField } from '@/components/TextField'
-import Profile from '@/components/Profile'
+import { TextField } from '@/components/atomics/TextField'
+import Profile from '@/components/atomics/Profile'
 
 const TestButton = styled.TouchableOpacity`
     background-color: #4CAF50;

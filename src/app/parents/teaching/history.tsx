@@ -1,5 +1,5 @@
-import { PageContainer } from '@/components/PageContainer'
-import { Typography } from '@/components/Typography'
+import { PageContainer } from '@/components/atomics/PageContainer'
+import { Typography } from '@/components/atomics/Typography'
 
 export default function History() {
   return (
