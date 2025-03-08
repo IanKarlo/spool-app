@@ -15,6 +15,7 @@ declare module 'styled-components/native' {
       darkBlue: string
       black: string
       gray: string
+      darkGray: string
       white: string
       background: string
     }
@@ -52,6 +53,7 @@ export const theme: DefaultTheme = {
     darkBlue: '#3492B8',
     black: '#000000',
     gray: '#BBBBBB',
+    darkGray: '#8F8F8F',
     white: '#FFFFFF',
     background: '#FFFFFF',
   },

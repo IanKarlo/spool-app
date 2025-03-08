@@ -1,10 +1,12 @@
 import { Box } from '@/components/Box'
 import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
+import { PageContainer } from '@/components/PageContainer'
 import { Typography } from '@/components/Typography'
 import { Link, Stack } from "expo-router"
 import { StyleSheet, Text, View } from "react-native"
 import styled from "styled-components/native"
+import { TextField } from '@/components/TextField'
 
 const TestButton = styled.TouchableOpacity`
     background-color: #4CAF50;
@@ -15,40 +17,49 @@ const TestButton = styled.TouchableOpacity`
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Index Page!!!</Text>
-      <TestButton><Text>Teste</Text></TestButton>
+    <PageContainer>
+      <Typography>Atômicos</Typography>
+
       <Box
         style={{ width: 100, height: 50, padding: 10 }}
         bgColor='blue'
       >
-        <Text>Teste</Text>
+
+        <Typography style={{ fontSize: 24 }}>Box</Typography>
       </Box>
+
       <Icon name="home" color='blue' size={32} />
-      <Typography color='black' style={{ fontSize: 24 }}  >Teste da fonte</Typography>
+
+      <Typography color='black' style={{ fontSize: 16 }}  >Teste da fonte</Typography>
+      <Typography color='black' style={{ fontSize: 16, fontWeight: 'bold' }}  >Teste da fonte</Typography>
       <Button
         text="Press me"
         onPress={() => console.log('pressed')}
       />
-
       <Button
         variant="outlined"
         color="blue"
         text="Outlined Button"
         onPress={() => console.log('pressed outlined')}
       />
-    </View>
+      <View style={{ height: 1, width: '100%', backgroundColor: 'black' }} />
+
+      <TextField
+        label="Name"
+        placeholder="Enter your name"
+      />
+
+      <TextField
+        label="Description"
+        placeholder="Enter description"
+        multiline
+      />
+
+      <TextField
+        label="Email"
+        placeholder="Enter your email"
+        error="Invalid email address"
+      />
+    </PageContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold'
-  }
-})
