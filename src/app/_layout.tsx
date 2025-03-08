@@ -25,9 +25,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="components" options={{ title: 'Components', headerShown: true }} />
       </Stack>
     </ThemeProvider>
   );

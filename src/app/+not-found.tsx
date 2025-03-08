@@ -1,3 +1,4 @@
+import React from 'react'
 import { View, StyleSheet } from 'react-native';
 import { Link, Stack } from 'expo-router';
 
@@ -6,7 +7,7 @@ export default function NotFoundScreen() {
     <>
       <Stack.Screen options={{ title: 'Oops! A pagina que você deseja acessar não existe.' }} />
       <View style={styles.container}>
-        <Link href="/(tabs)/index" style={styles.button}>
+        <Link href="/" style={styles.button}>
           Go back to Home screen!
         </Link>
       </View>

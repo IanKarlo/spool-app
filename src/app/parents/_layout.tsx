@@ -8,6 +8,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#ffd33d',
+        headerShown: false,
       }}
     >
       <Tabs.Screen
@@ -28,7 +29,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="(page1)"
         options={{
           title: 'Page1',
@@ -37,7 +38,7 @@ export default function TabLayout() {
           ),
           headerShown: false,
         }}
-      />
+      /> */}
     </Tabs>
   );
 }
