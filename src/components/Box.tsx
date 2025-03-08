@@ -6,7 +6,7 @@ import styled from "styled-components/native"
 interface BoxProps {
   bgColor: Colors
   style?: Omit<ViewStyle, 'backgroundColor'>
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function Box({ style, bgColor, children }: BoxProps) {
