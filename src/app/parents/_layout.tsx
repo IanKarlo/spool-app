@@ -12,7 +12,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -21,24 +21,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="landing"
+        name="teaching"
         options={{
-          title: 'About',
+          title: 'Teaching',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+            <Ionicons name={focused ? 'school-sharp' : 'school-outline'} color={color} size={24} />
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="(page1)"
-        options={{
-          title: 'Page1',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'cloud-circle' : 'close-circle-outline'} color={color} size={24} />
-          ),
-          headerShown: false,
-        }}
-      /> */}
     </Tabs>
   );
 }

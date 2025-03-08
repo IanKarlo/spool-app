@@ -25,7 +25,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.colors.white } }} >
         <Stack.Screen name="components" options={{ title: 'Components', headerShown: true }} />
       </Stack>
     </ThemeProvider>
