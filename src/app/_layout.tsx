@@ -12,9 +12,6 @@ export default function RootLayout() {
     'TTChocolates-Bold': require('../../assets/fonts/TT Chocolates Trial Bold.otf'),
   })
 
-  const currentPath = usePathname();
-  console.log('RootLayout currentPath',currentPath)
-
   if (!fontsLoaded) {
     return null
   }

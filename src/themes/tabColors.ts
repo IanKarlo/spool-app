@@ -6,6 +6,7 @@ type HrefString = Href & string
 export const tabColors:  Partial<Record<HrefString, Colors>> = {
   "/parents/home": 'pink',
   "/parents/teaching": 'purple',
+  "/parents/therapy": 'green',
 }
 
 export type TabColor = keyof typeof tabColors
