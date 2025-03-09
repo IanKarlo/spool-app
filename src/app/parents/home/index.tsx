@@ -5,7 +5,7 @@ import Header from '@/components/molecules/Header'
 export default function Home() {
   return (
     <PageContainer>
-      <Header name='John Doe' profileImage='https://github.com/diego3g.png' color='pink' />
+      <Header name='John Doe' profileImage='https://github.com/diego3g.png' />
       <Typography>Home</Typography>
       <Typography>Home</Typography>
       <Typography>Home</Typography>

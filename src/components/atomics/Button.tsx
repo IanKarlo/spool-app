@@ -1,5 +1,5 @@
 import type { Colors } from '@/themes'
-import type { PressableProps } from 'react-native'
+import type { PressableProps,  } from 'react-native'
 import { Pressable } from 'react-native'
 import { Box } from './Box'
 import { Typography } from './Typography'

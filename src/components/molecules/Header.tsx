@@ -5,10 +5,10 @@ import type { Colors } from "@/themes";
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
+import { usePathnameColor } from "@/hooks/usePathnameColor";
 
 interface HeaderProps {
 	name: string;
-	color: Colors;
 	profileImage: string;
 	showGoBackButton?: boolean;
 }
@@ -17,8 +17,8 @@ export default function Header({
 	name,
 	profileImage,
 	showGoBackButton = false,
-	color,
 }: HeaderProps) {
+  const { tabColor } = usePathnameColor()
 	return (
 		<View
 			style={{
@@ -34,12 +34,12 @@ export default function Header({
 			) : (
 				<View>
 					<Typography>Resumo de</Typography>
-					<Typography style={{ fontSize: 28, fontWeight: "bold" }} color={color}>
+					<Typography style={{ fontSize: 28, fontWeight: "bold" }} color={tabColor}>
 						{name}
 					</Typography>
 				</View>
 			)}
-			<Profile uri={profileImage} color={color} />
+			<Profile uri={profileImage} color={tabColor} />
 		</View>
 	);
 }
