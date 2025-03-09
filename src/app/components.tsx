@@ -8,7 +8,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native"
 import styled from "styled-components/native"
 import { TextField } from '@/components/atomics/TextField'
 import Profile from '@/components/atomics/Profile'
-
+import Header from '@/components/molecules/Header'
 const TestButton = styled.TouchableOpacity`
     background-color: #4CAF50;
     font-color: purple;
@@ -65,6 +65,8 @@ export default function Index() {
 
         <Profile uri='https://github.com/diego3g.png' color='pink' />
         <Profile uri='https://github.com/diego3g.png' color='pink' size={128} />
+
+        <Header name='John Doe' profileImage='https://github.com/diego3g.png' color='pink' />
       </PageContainer>
     </ScrollView>
   )
