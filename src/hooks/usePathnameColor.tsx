@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useLayoutEffect, useState } from 'react'
 import { usePathname } from 'expo-router'
 import type { Colors } from '@/themes'
 import { type TabColor, tabColors } from '@/themes/tabColors'
@@ -30,7 +30,7 @@ export function PathnameColorProvider({
   const pathname = usePathname()
   const [tabColor, setTabColor] = useState<Colors>(DEFAULT_COLOR)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTabColor(getColorFromPathname(pathname))
   }, [pathname])
 
