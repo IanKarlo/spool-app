@@ -1,23 +1,21 @@
 import { Tabs } from 'expo-router';
-import { usePathnameColor } from '@/hooks/usePathnameColor';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useTheme } from 'styled-components';
-import type { Colors } from '@/themes';
+import NavBar from '@/components/molecules/NavBar'
+
 export default function TabLayout() {
-  const theme = useTheme();
-  const { tabColor } = usePathnameColor();
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarInactiveTintColor: theme.colors.gray,
-        tabBarActiveTintColor: theme.colors[tabColor as Colors],
       }}
+      tabBar={({ state, descriptors, navigation, insets }) => (
+        <NavBar state={state} descriptors={descriptors} navigation={navigation} insets={insets} />
+      )}
     >
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: 'Início',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
@@ -26,7 +24,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="teaching"
         options={{
-          title: 'Teaching',
+          title: 'Ensino',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'school-sharp' : 'school-outline'} color={color} size={24} />
           ),
@@ -35,7 +33,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="therapy"
         options={{
-          title: 'Therapy',
+          title: 'Terapia',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'pulse-sharp' : 'pulse-outline'} color={color} size={24} />
           ),

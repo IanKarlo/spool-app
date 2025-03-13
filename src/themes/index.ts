@@ -18,6 +18,7 @@ declare module 'styled-components/native' {
       darkGray: string
       white: string
       background: string
+      tabBarBackground: string
     }
     radius: {
       default: number
@@ -56,6 +57,7 @@ export const theme: DefaultTheme = {
     darkGray: '#8F8F8F',
     white: '#FFFFFF',
     background: '#FFFFFF',
+    tabBarBackground: '#FAFAFA',
   },
   radius: {
     default: 12
