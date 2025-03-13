@@ -69,15 +69,13 @@ export default function NavBar({ state, descriptors, navigation }: BottomTabBarP
           style={{ flex: 1 }}
         >
           <View style={{
-            borderWidth: 1,
-            borderColor: 'blue',
             alignItems: 'center',
             justifyContent: 'center',
             height: 50,
             gap: 8,
           }} >
             {TabBarIcon && <TabBarIcon color={color} focused={isFocused} size={32} />}
-            <Typography style={{ color, fontSize: 12, lineHeight: 16 }}>
+            <Typography style={{ color, fontSize: 16 }}>
               {label as string}
             </Typography>
           </View>
