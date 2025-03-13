@@ -8,7 +8,7 @@ import { PathnameColorProvider } from '@/hooks/usePathnameColor'
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'TTChocolates-Regular': require('../../assets/fonts/TT Chocolates Trial Regular.otf'),
+    'TTChocolates-Regular': require('../../assets/fonts/TT Chocolates Trial Medium.otf'),
     'TTChocolates-Bold': require('../../assets/fonts/TT Chocolates Trial Bold.otf'),
   })
 

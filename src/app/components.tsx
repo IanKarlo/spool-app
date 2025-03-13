@@ -9,6 +9,7 @@ import styled from "styled-components/native"
 import { TextField } from '@/components/atomics/TextField'
 import Profile from '@/components/atomics/Profile'
 import Header from '@/components/molecules/Header'
+import { Tag } from '@/components/molecules/Tag'
 const TestButton = styled.TouchableOpacity`
     background-color: #4CAF50;
     font-color: purple;
@@ -66,7 +67,13 @@ export default function Index() {
         <Profile uri='https://github.com/diego3g.png' color='pink' />
         <Profile uri='https://github.com/diego3g.png' color='pink' size={128} />
 
-        <Header name='John Doe' profileImage='https://github.com/diego3g.png' color='pink' />
+        <Header name='John Doe' profileImage='https://github.com/diego3g.png' />
+        <Box bgColor='pink' style={{ width: 100, height: 100, gap: 8 }}>
+          <Tag icon='smile' label='Home' variant='active' color='purple' />
+          <Tag icon='smile' label='Home' variant='inactive' color='purple' />
+          <Tag icon='smile' label='Home' variant='white' color='purple' />
+        </Box>
+
       </PageContainer>
     </ScrollView>
   )
