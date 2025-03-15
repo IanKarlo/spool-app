@@ -1,20 +1,12 @@
 import { PageContainer } from '@/components/atomics/PageContainer'
-import { router } from 'expo-router'
 import Header from '@/components/molecules/Header'
-import { BigCard } from '@/components/organisms/BigCard'
-import { CarousellList } from '@/components/organisms/CarousellList'
 import { RegisterHistory } from '@/components/organisms/History'
-import { View } from 'react-native'
-import Profile from '@/components/atomics/Profile'
-import { Typography } from '@/components/atomics/Typography'
 import { ProfileHeader } from '@/components/molecules/ProfileHeader'
+import { Button } from '@/components/atomics/Button'
+import { router } from 'expo-router'
 
-function newRegister() {
-  router.push('/therapist/home/newRegister')
-}
-
-function patients() {
-  router.push('/therapist/home/patients')
+function registerView() {
+  router.push('/therapist/home/viewRegister')
 }
 
 export default function Home() {
@@ -22,6 +14,8 @@ export default function Home() {
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
         <ProfileHeader/>
+        <Button text='Novo Registro' variant='outlined' color='green'></Button>
+        <RegisterHistory cardFn={registerView} hideIcon={true}/>
     </PageContainer>
   )
 }

@@ -17,13 +17,17 @@ function profile() {
   router.push('/therapist/home/profile')
 }
 
+function registerView() {
+  router.push('/therapist/home/viewRegister')
+}
+
 export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' />
         <BigCard color='purple' fontColor='white' fn={newRegister}/>
         <CarousellList crFn={patients} cardFn={profile} color="green" fontColor='white' cardColor='darkGreen' cardFontcolor='white'/>
-        <RegisterHistory></RegisterHistory>
+        <RegisterHistory cardFn={registerView}></RegisterHistory>
     </PageContainer>
   )
 }
