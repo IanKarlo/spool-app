@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
-        <ProfileHeader/>
+        <ProfileHeader profileColor='purple'/>
         <Button text='Novo Registro' variant='outlined' color='green'></Button>
         <RegisterHistory cardFn={registerView} hideIcon={true}/>
     </PageContainer>

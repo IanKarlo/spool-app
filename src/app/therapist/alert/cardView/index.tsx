@@ -1,15 +1,21 @@
 import { PageContainer } from '@/components/atomics/PageContainer'
 import Header from '@/components/molecules/Header'
+import { RegisterHistory } from '@/components/organisms/History'
 import { ProfileHeader } from '@/components/molecules/ProfileHeader'
+import { Button } from '@/components/atomics/Button'
 import { View } from 'react-native'
 import { Typography } from '@/components/atomics/Typography'
 import { Tag } from '@/components/molecules/Tag'
+import { router } from 'expo-router'
 
+function registerView() {
+    router.push('/therapist/home/viewRegister')
+}
 export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
-        <ProfileHeader nameColor='purple' profileColor='purple'/>
+        <ProfileHeader nameColor='pink' profileColor='pink'/>
         <View style={{gap: 12}}>
             <View>
                 <Typography style={{fontSize: 32}}>Terapeuta</Typography>
@@ -19,11 +25,11 @@ export default function Home() {
             <View>
                 <Typography style={{fontSize: 20}}>Sintomas</Typography>
                 <View style={{display: 'flex', flexDirection: 'row', gap: 4, flexWrap: 'wrap'}}>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="inactive"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="inactive"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="pink" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="pink" label="Bom-humor" variant="inactive"/>
+                    <Tag icon="airplay" color="pink" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="pink" label="Bom-humor" variant="inactive"/>
+                    <Tag icon="airplay" color="pink" label="Bom-humor" variant="active"/>
                 </View>
             </View>
             <View>
