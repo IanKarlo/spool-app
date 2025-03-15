@@ -1,5 +1,5 @@
 import { Box } from '@/components/atomics/Box'
-import type { ViewStyle } from "react-native"
+import { ScrollView, type ViewStyle } from "react-native"
 import type { DefaultTheme } from 'styled-components'
 import styled from 'styled-components/native'
 /**
@@ -10,9 +10,11 @@ import styled from 'styled-components/native'
  */
 export function PageContainer({ children, style }: { children: React.ReactNode, style?: ViewStyle }) {
   return (
-    <PageContainerStyled style={{ ...style }}>
-      {children}
-    </PageContainerStyled>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <PageContainerStyled style={{ ...style }}>
+        {children}
+      </PageContainerStyled>
+    </ScrollView>
   )
 }
 

@@ -18,7 +18,7 @@ export default function Index() {
       <Button
         text="THERAPISTS"
         color="green"
-        onPress={() => router.push('./therapists')}
+        onPress={() => router.push('./therapist')}
       />
       <Button
         text="COMPONENTS"
