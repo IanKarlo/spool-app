@@ -9,12 +9,20 @@ function newRegister() {
   router.push('/therapist/home/newRegister')
 }
 
+function patients() {
+  router.push('/therapist/home/patients')
+}
+
+function profile() {
+  router.push('/therapist/home/profile')
+}
+
 export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' />
         <BigCard color='purple' fontColor='white' fn={newRegister}/>
-        <CarousellList color="green" fontColor='white' cardColor='darkGreen' cardFontcolor='white'/>
+        <CarousellList crFn={patients} cardFn={profile} color="green" fontColor='white' cardColor='darkGreen' cardFontcolor='white'/>
         <RegisterHistory></RegisterHistory>
     </PageContainer>
   )
