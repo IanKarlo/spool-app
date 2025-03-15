@@ -8,17 +8,20 @@ import { router } from "expo-router";
 import { usePathnameColor } from "@/hooks/usePathnameColor";
 
 interface HeaderProps {
+	simpleText?: string;
 	name: string;
 	profileImage: string;
 	showGoBackButton?: boolean;
 }
 
 export default function Header({
+	simpleText,
 	name,
 	profileImage,
 	showGoBackButton = false,
 }: HeaderProps) {
   const { tabColor } = usePathnameColor()
+  const text = !simpleText ? 'Resumo de' : simpleText
 	return (
 		<View
 			style={{
@@ -33,7 +36,7 @@ export default function Header({
 				</TouchableOpacity>
 			) : (
 				<View>
-					<Typography>Resumo de</Typography>
+					<Typography>{text}</Typography>
 					<Typography style={{ fontSize: 28, fontWeight: "bold" }} color={tabColor}>
 						{name}
 					</Typography>

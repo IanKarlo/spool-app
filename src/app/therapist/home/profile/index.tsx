@@ -9,12 +9,16 @@ function registerView() {
   router.push('/therapist/home/viewRegister')
 }
 
+function newRegister() {
+  router.push('/therapist/home/newRegister')
+}
+
 export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
         <ProfileHeader profileColor='purple'/>
-        <Button text='Novo Registro' variant='outlined' color='green'></Button>
+        <Button text='Novo Registro' variant='outlined' color='green' onPress={() => newRegister()}></Button>
         <RegisterHistory cardFn={registerView} hideIcon={true}/>
     </PageContainer>
   )
