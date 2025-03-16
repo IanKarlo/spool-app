@@ -1,27 +1,27 @@
-import { PageContainer } from "@/components/atomics/PageContainer";
-import { router } from "expo-router";
-import Header from "@/components/molecules/Header";
-import { Typography } from "@/components/atomics/Typography";
-import { View } from "react-native";
-import { useState } from "react";
-import { Tag } from "@/components/molecules/Tag";
-import { TextField } from "@/components/atomics/TextField";
 import { Button } from "@/components/atomics/Button";
+import { PageContainer } from "@/components/atomics/PageContainer";
+import { TextField } from "@/components/atomics/TextField";
+import { Typography } from "@/components/atomics/Typography";
+import Header from "@/components/molecules/Header";
+import { Tag } from "@/components/molecules/Tag";
 import { SelectUsageExample } from "@/components/organisms/Select";
+import { router } from "expo-router";
+import { useState } from "react";
+import { View } from "react-native";
 
-export default function Home() {
+export default function NewRegister() {
   const [selecteds, setSelecteds] = useState<Set<number>>(new Set());
 
   return (
     <PageContainer>
       <Header
+        showGoBackButton
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
-        showGoBackButton
       />
       <Typography style={{ fontSize: 22 }}>Novo Registro</Typography>
       <View>
-        <Typography style={{ fontSize: 18 }}>Selecionar paciente</Typography>
+        <Typography style={{ fontSize: 18 }}>Selecionar aluno</Typography>
         <SelectUsageExample />
       </View>
       <View>

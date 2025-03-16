@@ -8,41 +8,46 @@ import { router } from "expo-router";
 import { usePathnameColor } from "@/hooks/usePathnameColor";
 
 interface HeaderProps {
-	simpleText?: string;
-	name: string;
-	profileImage: string;
-	showGoBackButton?: boolean;
+  simpleText?: string;
+  name: string;
+  profileImage: string;
+  showGoBackButton?: boolean;
+  hiddenAvatar?: boolean;
 }
 
 export default function Header({
-	simpleText,
-	name,
-	profileImage,
-	showGoBackButton = false,
+  simpleText,
+  name,
+  profileImage,
+  showGoBackButton = false,
+  hiddenAvatar = false,
 }: HeaderProps) {
-  const { tabColor } = usePathnameColor()
-  const text = !simpleText ? 'Resumo de' : simpleText
-	return (
-		<View
-			style={{
-				flexDirection: "row",
-				justifyContent: "space-between",
-				alignItems: "center",
-			}}
-		>
-			{showGoBackButton ? (
-				<TouchableOpacity onPress={() => router.back()}>
-					<Icon name="arrow-left" size={24} color="black" />
-				</TouchableOpacity>
-			) : (
-				<View>
-					<Typography>{text}</Typography>
-					<Typography style={{ fontSize: 28, fontWeight: "bold" }} color={tabColor}>
-						{name}
-					</Typography>
-				</View>
-			)}
-			<Profile uri={profileImage} color={tabColor} />
-		</View>
-	);
+  const { tabColor } = usePathnameColor();
+  const text = !simpleText ? "Resumo de" : simpleText;
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      {showGoBackButton ? (
+        <TouchableOpacity onPress={() => router.back()}>
+          <Icon name="arrow-left" size={24} color="black" />
+        </TouchableOpacity>
+      ) : (
+        <View>
+          <Typography>{text}</Typography>
+          <Typography
+            style={{ fontSize: 28, fontWeight: "bold" }}
+            color={tabColor}
+          >
+            {name}
+          </Typography>
+        </View>
+      )}
+      {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
+    </View>
+  );
 }
