@@ -3,6 +3,7 @@ import { Typography } from "../atomics/Typography";
 import { RegisterCard } from "./RegisterCard";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/themes";
+import RegisterCardList from "./RegisterCardList";
 
 interface RegisterHistoryProps {
   hideIcon?: boolean;
@@ -32,14 +33,7 @@ export function RegisterHistory({
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>
-
-      <View style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <RegisterCard fn={cardFn} color={color} />
-        <RegisterCard fn={cardFn} color={color} />
-        <RegisterCard fn={cardFn} color={color} />
-        <RegisterCard fn={cardFn} color={color} />
-        <RegisterCard fn={cardFn} color={color} />
-      </View>
+      <RegisterCardList cardFn={cardFn} color={color} cardLimit={4}/>
     </View>
   );
 }
