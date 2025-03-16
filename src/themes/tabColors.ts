@@ -4,7 +4,7 @@ import type { Href } from "expo-router";
 type HrefString = Href & string;
 
 export const tabColors: Partial<Record<HrefString, Colors>> = {
-  "/parents/home": "pink",
+  "/parents/home": "darkBlue",
   "/parents/teaching": "purple",
   "/parents/therapy": "green",
   "/therapist/home": "purple",
