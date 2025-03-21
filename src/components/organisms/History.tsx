@@ -7,14 +7,16 @@ import RegisterCardList from "./RegisterCardList";
 
 interface RegisterHistoryProps {
   hideIcon?: boolean;
-  color?: Colors;
+  cardColor?: Colors;
+  fontCardColor?: Colors;
   cardFn: () => void;
-  historyFn: () => void;
+  historyFn?: () => void;
 }
 
 export function RegisterHistory({
   hideIcon,
-  color = "purple",
+  cardColor = "purple",
+  fontCardColor = "white",
   cardFn,
   historyFn,
 }: RegisterHistoryProps) {
@@ -33,7 +35,7 @@ export function RegisterHistory({
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>
-      <RegisterCardList cardFn={cardFn} color={color} cardLimit={4}/>
+      <RegisterCardList cardFn={cardFn} color={cardColor} fontColor={fontCardColor} cardLimit={4}/>
     </View>
   );
 }

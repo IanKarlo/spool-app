@@ -15,19 +15,20 @@ export function BigCard({
 }) {
   return (
     <TouchableOpacity onPress={() => fn()}>
-      <Box style={{ height: 132, padding: 12 }} bgColor={color}>
+      <Box style={{ height: 48, padding: 12 }} bgColor={color}>
         <View
           style={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignContent: "center",
+            alignItems: "center",
           }}
         >
           <Typography color={fontColor} style={{ fontSize: 18 }}>
             Novo Registro
           </Typography>
-          <Ionicons name="chevron-forward" size={20} color={fontColor} />
+          <Ionicons name="add-outline" size={20} color={fontColor} />
         </View>
       </Box>
     </TouchableOpacity>
