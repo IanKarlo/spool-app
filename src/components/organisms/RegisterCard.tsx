@@ -57,19 +57,19 @@ export function RegisterCard({
           >
             <Tag
               icon="airplay"
-              color={color}
+              color={fontColor}
               label="Bom-humor"
               variant="white"
             />
             <Tag
               icon="airplay"
-              color={color}
+              color={fontColor}
               label="Bom-humor"
               variant="white"
             />
             <Tag
               icon="airplay"
-              color={color}
+              color={fontColor}
               label="Bom-humor"
               variant="white"
             />
