@@ -51,7 +51,7 @@ export const theme: DefaultTheme = {
     darkOrange: '#cc7e16',
     green: '#00C389',
     darkGreen: '#00A06B', // essa cor não tinha nos protótipo, botei qualquer coisa
-    lightBlue: '#2790B00F', // essa cor tinha nos protótipo, mas ainda não estava mapeada para cá
+    lightBlue: '#b0e3f5', // essa cor tinha nos protótipo, mas ainda não estava mapeada para cá
     blue: '#41B6E6',
     darkBlue: '#3492B8',
     black: '#000000',
