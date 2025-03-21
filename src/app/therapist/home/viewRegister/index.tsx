@@ -8,7 +8,7 @@ import { Tag } from '@/components/molecules/Tag'
 export default function Home() {
   return (
     <PageContainer>
-        <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
+        <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack"/>
         <ProfileHeader nameColor='purple' profileColor='purple'/>
         <View style={{gap: 12}}>
             <View>

@@ -19,7 +19,7 @@ export default function StudentProfile() {
       <Header
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
-        showGoBackButton
+        headerType = "goBack"
       />
       <ProfileHeader profileColor="purple" />
       <Button

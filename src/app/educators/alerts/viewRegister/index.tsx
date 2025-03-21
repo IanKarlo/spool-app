@@ -12,7 +12,7 @@ export default function ViewRegister() {
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
         hiddenAvatar
-        showGoBackButton
+        headerType="goBack"
       />
       <ProfileHeader nameColor="pink" profileColor="pink" />
       <View style={{ gap: 12 }}>

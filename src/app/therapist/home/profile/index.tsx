@@ -16,7 +16,7 @@ function newRegister() {
 export default function Home() {
   return (
     <PageContainer>
-        <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
+        <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack"/>
         <ProfileHeader profileColor='purple'/>
         <Button text='Novo Registro' variant='outlined' color='green' onPress={() => newRegister()}></Button>
         <RegisterHistory cardFn={registerView} hideIcon={true}/>

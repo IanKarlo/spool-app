@@ -15,7 +15,7 @@ export default function NewRegister() {
   return (
     <PageContainer>
       <Header
-        showGoBackButton
+        headerType = "goBack"
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
       />

@@ -14,7 +14,7 @@ export default function Students() {
       <Header
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
-        showGoBackButton
+        headerType = "goBack"
       />
       <Typography style={{ fontSize: 18 }}>Alunos</Typography>
       <ProfileCard

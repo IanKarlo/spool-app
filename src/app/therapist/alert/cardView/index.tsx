@@ -14,7 +14,7 @@ function registerView() {
 export default function Home() {
   return (
     <PageContainer>
-        <Header name='John Doe' profileImage='https://github.com/diego3g.png' showGoBackButton/>
+        <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack"/>
         <ProfileHeader nameColor='pink' profileColor='pink'/>
         <View style={{gap: 12}}>
             <View>

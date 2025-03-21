@@ -11,7 +11,7 @@ export default function Home() {
       <Header
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
-        showGoBackButton
+        headerType = "goBack"
       />
       <View style={{ gap: 20 }}>
         <View style={{ display: "flex", flexDirection: "column" }}>
