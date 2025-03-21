@@ -7,11 +7,12 @@ import { View, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import { usePathnameColor } from "@/hooks/usePathnameColor";
 
+type headerType = "profile" | "withTitle" | "goBack";
 interface HeaderProps {
   simpleText?: string;
   name: string;
   profileImage: string;
-  showGoBackButton?: boolean;
+  headerType?: headerType;
   hiddenAvatar?: boolean;
 }
 
@@ -19,35 +20,72 @@ export default function Header({
   simpleText,
   name,
   profileImage,
-  showGoBackButton = false,
+  headerType = "withTitle",
   hiddenAvatar = false,
 }: HeaderProps) {
   const { tabColor } = usePathnameColor();
   const text = !simpleText ? "Resumo de" : simpleText;
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      {showGoBackButton ? (
-        <TouchableOpacity onPress={() => router.back()}>
-          <Icon name="arrow-left" size={24} color="black" />
-        </TouchableOpacity>
-      ) : (
-        <View>
-          <Typography>{text}</Typography>
+
+  switch (headerType) {
+    case "profile":
+      return (
+        <View
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity onPress={() => router.back()} style={{ alignSelf: "flex-start" }}>
+            <Icon name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
+          <Profile uri={profileImage} color={tabColor} />
           <Typography
             style={{ fontSize: 28, fontWeight: "bold" }}
             color={tabColor}
           >
             {name}
           </Typography>
+          <Typography>{text}</Typography>
         </View>
-      )}
-      {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
-    </View>
-  );
+      );
+    case "withTitle":
+      return (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <View>
+            <Typography>{text}</Typography>
+            <Typography
+              style={{ fontSize: 28, fontWeight: "bold" }}
+              color={tabColor}
+            >
+              {name}
+            </Typography>
+          </View>
+          {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
+        </View>
+      );
+    case "goBack":
+      return (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity onPress={() => router.back()}>
+            <Icon name="arrow-left" size={24} color="black" />
+          </TouchableOpacity>
+          {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
+        </View>
+      );
+    default:
+      return null;
+  }
 }
