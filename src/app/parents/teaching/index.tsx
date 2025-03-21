@@ -6,7 +6,7 @@ import { CarousellList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
 
-export default function Home() {
+export default function Teaching() {
   function viewTeacher() {
     router.push("/parents/teaching/viewTeacher");
   }
@@ -20,10 +20,10 @@ export default function Home() {
     router.push("/parents/teaching/carerList");
   }
   function viewHistory() {
-    router.push("/parents/home/viewHistory");
+    router.push("/parents/teaching/viewHistory");
   }
   function viewRegister() {
-    router.push("/parents/home/viewRegister");
+    router.push("/parents/teaching/viewRegister");
   }
 
   return (
