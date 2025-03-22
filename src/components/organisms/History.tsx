@@ -31,7 +31,7 @@ export function RegisterHistory({
             alignContent: "center",
           }}
         >
-          <Typography style={{ fontSize: 18, fontWeight: 600, fontFamily: 'TTChocolates-Medium' }} color="darkBlue">Histórico de Registros</Typography>
+          <Typography style={{ fontSize: 22  }} color="text1">Histórico de Registros</Typography>
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>

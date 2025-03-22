@@ -13,9 +13,8 @@ export default function RootLayout() {
     'TTChocolates-Bold': require('../../assets/fonts/TT Chocolates Trial Bold.otf'),
   })
 
-  if (!fontsLoaded) {
-    return null
-  }
+  const pathname = usePathname();
+  console.log(pathname);
 
   // const { expoPushToken} = usePushNotifications();
 
@@ -24,6 +23,10 @@ export default function RootLayout() {
   //     console.log('Push token received: ', expoPushToken);
   //   }
   // }, [expoPushToken])
+
+  if (!fontsLoaded) {
+    return null
+  }
 
   return (
     <ThemeProvider theme={theme}>

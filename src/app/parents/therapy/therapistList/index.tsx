@@ -58,33 +58,34 @@ export default function therapistList() {
       <View style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         <ProfileCard
           fn={() => router.push("/parents/teaching/viewTeacher")}
-          color="lightBlue"
-          fontColor="black"
+          color="darkBlue"
           variation="normal"
           style={{ marginRight: 12 }}
-          info="Turma 1A"
+          name="Kelly Azevedo"  
+          info="Terapeuta"
         />
         <ProfileCard
           fn={() => router.push("/parents/teaching/viewTeacher")}
-          color="lightBlue"
-          fontColor="black"
+          color="darkBlue"
           variation="normal"
           style={{ marginRight: 12 }}
-          info="Turma 1A"
+          info="Terapeuta"
+          name="Kelly Azevedo"
         />
         <ProfileCard
           fn={() => router.push("/parents/teaching/viewTeacher")}
-          color="lightBlue"
-          fontColor="black"
+          color="darkBlue"
           variation="normal"
           style={{ marginRight: 12 }}
-          info="Turma 1A"
+          info="Terapeuta"
+          name="Kelly Azevedo"
         />
         <ProfileCard
           fn={() => router.push("/parents/teaching/viewTeacher")}
-          color="lightBlue"
-          fontColor="black"
+          color="darkBlue"
           variation="normal"
+          name="Kelly Azevedo"
+          info="Terapeuta"
         />
       </View>
     </PageContainer>

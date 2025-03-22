@@ -17,8 +17,8 @@ export default function Home() {
             style={{
               fontSize: 24,
               fontWeight: 600,
-              color: "darkBlue",
             }}
+            color="darkBlue"
           >
             Histórico de Registros
           </Typography>

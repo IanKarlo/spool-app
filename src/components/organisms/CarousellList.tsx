@@ -1,4 +1,4 @@
-import { Colors } from "@/themes";
+import type { Colors } from "@/themes";
 import { Box } from "../atomics/Box";
 import { Typography } from "../atomics/Typography";
 import { ScrollView, TouchableOpacity, View } from "react-native";
@@ -6,85 +6,88 @@ import { ProfileCard } from "./ProfileCard";
 import { Ionicons } from "@expo/vector-icons";
 
 export function CarousellList({
-  color,
-  fontColor,
-  cardColor,
-  cardFontcolor,
+  fontColor = 'text1',
+  cardColor = 'lightBlue',
+  cardFontcolor = 'text1',
   crFn,
   cardFn,
-  title = "Pacientes",
+  title,
+  marginSize = 24,
 }: {
-  color: Colors;
-  fontColor: Colors;
-  cardColor: Colors;
-  cardFontcolor: Colors;
+  fontColor?: Colors;
+  cardColor?: Colors;
+  cardFontcolor?: Colors;
   title?: string;
   crFn: () => void;
   cardFn: () => void;
+  marginSize?: number;
 }) {
   return (
     <TouchableOpacity onPress={() => crFn()}>
-      <Box style={{ height: 160, padding: 12 }} bgColor={color}>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignContent: "center",
+          gap: 16,
+        }}
+      >
         <View
           style={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             justifyContent: "space-between",
-            alignContent: "center",
-            gap: 16,
+            alignItems: "center",
           }}
         >
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography color={fontColor} style={{ fontSize: 18 }}>
-              {title}
-            </Typography>
-            <Ionicons name="chevron-forward" size={20} color={fontColor} />
-          </View>
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            style={{ display: "flex", flexDirection: "row", gap: 24 }}
-          >
-            <ProfileCard
-              fn={cardFn}
-              color={cardColor}
-              fontColor={cardFontcolor}
-              variation="small"
-              style={{ marginRight: 12 }}
-              info="Turma 1A"
-            />
-            <ProfileCard
-              fn={cardFn}
-              color={cardColor}
-              fontColor={cardFontcolor}
-              variation="small"
-              style={{ marginRight: 12 }}
-              info="Turma 1A"
-            />
-            <ProfileCard
-              fn={cardFn}
-              color={cardColor}
-              fontColor={cardFontcolor}
-              variation="small"
-              style={{ marginRight: 12 }}
-              info="Turma 1A"
-            />
-            <ProfileCard
-              fn={cardFn}
-              color={cardColor}
-              fontColor={cardFontcolor}
-              variation="small"
-            />
-          </ScrollView>
+          <Typography color={fontColor} style={{ fontSize: 22, }}>
+            {title}
+          </Typography>
+          <Ionicons name="chevron-forward" size={20} color={fontColor} />
         </View>
-      </Box>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{ display: "flex", flexDirection: "row", gap: 24, marginHorizontal: -marginSize }}
+        >
+          <View style={{ width: marginSize }}/>
+          {/* LISTA AQUI ABAIXO */}
+          <ProfileCard
+            fn={cardFn}
+            color={cardColor}
+            variation="small"
+            style={{ marginRight: 12 }}
+            info="Turma 1A"
+            name="Fulano de Tal"
+          />
+          <ProfileCard
+            fn={cardFn}
+            color={cardColor}
+            variation="small"
+            style={{ marginRight: 12 }}
+            info="Turma 1A"
+            name="Fulano de Tal"
+          />
+          <ProfileCard
+            fn={cardFn}
+            color={cardColor}
+            variation="small"
+            style={{ marginRight: 12 }}
+            info="Turma 1A"
+            name="Fulano de Tal"
+          />
+          <ProfileCard
+            fn={cardFn}
+            color={cardColor}
+            variation="small"
+            name="Fulano de Tal"
+            info="Turma 1A"
+          />
+          {/* LISTA AQUI ACIMA */}
+          <View style={{ width: marginSize }}/>
+        </ScrollView>
+      </View>
     </TouchableOpacity>
   );
 }

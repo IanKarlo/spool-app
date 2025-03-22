@@ -10,7 +10,6 @@ import { useState } from "react";
 import { View } from "react-native";
 
 export default function addTherapist() {
-  const [selecteds, setSelecteds] = useState<Set<number>>(new Set());
 
   return (
     <PageContainer>
@@ -19,14 +18,14 @@ export default function addTherapist() {
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
       />
-    <Typography style={{ fontSize: 24 }} color="darkBlue">Adicionar Terapeuta</Typography>
+    <Typography style={{ fontSize: 24, fontFamily: 'TTChocolates-Medium' }} color="blue">Adicionar Terapeuta</Typography>
       <View style={{ gap: 12 }}>
         <Typography style={{ fontSize: 14 }}>
           E-mail do Terapeuta
         </Typography>
-        <TextField placeholder="Example@gmail.com"  />
+        <TextField placeholder="exemplo@gmail.com"  />
       </View>
-      <Button text="Adicionar" color="darkBlue" onPress={() => null} />
+      <Button text="Adicionar" color="blue" onPress={() => null} />
     </PageContainer>
   );
 }

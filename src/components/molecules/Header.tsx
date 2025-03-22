@@ -39,10 +39,10 @@ export default function Header({
           <TouchableOpacity onPress={() => router.back()} style={{ alignSelf: "flex-start" }}>
             <Icon name="arrow-left" size={24} color="black" />
           </TouchableOpacity>
-          <Profile uri={profileImage} color={tabColor} />
+          <Profile uri={profileImage} color={"darkBlue"} size={90} />
           <Typography
-            style={{ fontSize: 28, fontWeight: "bold" }}
-            color={tabColor}
+            style={{ fontSize: 28, fontFamily: 'TTChocolates-Medium' }}
+            color={"darkBlue"}
           >
             {name}
           </Typography>

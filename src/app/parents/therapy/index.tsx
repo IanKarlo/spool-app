@@ -25,9 +25,9 @@ export default function Therapy() {
 
   return (
     <PageContainer>
-      <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Ensino do"/>
-      <CarousellList crFn={therapistList} title='Terapeutas' cardFn={viewTherapist} color="white" fontColor='black' cardColor='lightBlue' cardFontcolor='black'/>
-      <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>
+      <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Terapia do"/>
+      <CarousellList crFn={therapistList} title='Terapeutas' cardFn={viewTherapist} />
+      <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} />
     </PageContainer>
   );
 }
