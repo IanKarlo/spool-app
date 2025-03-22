@@ -29,7 +29,7 @@ export function ProfileCard({
     <TouchableOpacity onPress={fn}>
       <Box style={{ height: 92, padding: 12, width, ...style }} bgColor={'lightBlue'}>
         <View style={{ display: "flex", flexDirection: "row", gap: 12 }}>
-          <Profile uri="https://github.com/diego3g.png" color={color} />
+          <Profile uri="https://github.com/diego3g.png" color={color} singleBorder />
           <View style={{ marginVertical: "auto" }}>
             <Typography color={fontColorName} style={{ fontSize: 18, fontWeight: 600, fontFamily: 'TTChocolates-Medium' }}>
               {name}

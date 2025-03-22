@@ -17,7 +17,7 @@ interface SelectProps {
   onSelect: (item: SelectItem) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ itens, onSelect }) => {
+export const Select: React.FC<SelectProps> = ({ itens, onSelect }) => {
   const [selectedItem, setSelectedItem] = useState<SelectItem>(itens[0]);
   const [isOpen, setIsOpen] = useState(false);
 

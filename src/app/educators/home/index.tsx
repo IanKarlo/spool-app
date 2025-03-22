@@ -24,15 +24,11 @@ export default function Home() {
   }
   return (
     <PageContainer>
-      <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
-      <BigCard color="orange" fontColor="white" fn={newRegister} />
+      <Header name="John Doe" simpleText="Olá," profileImage="https://github.com/diego3g.png" />
+      <BigCard color="blue" fontColor="white" fn={newRegister} />
       <CarouselList
         crFn={students}
         cardFn={studentProfile}
-        color="blue"
-        fontColor="white"
-        cardColor="darkBlue"
-        cardFontcolor="white"
         title="Alunos"
       />
       <RegisterHistory cardFn={viewRegister} />

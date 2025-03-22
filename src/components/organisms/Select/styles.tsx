@@ -1,13 +1,12 @@
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-
+import type { DefaultTheme } from "styled-components";
 export const SelectContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   background-color: #f8f8f8;
   border-radius: 12px;
   padding: 12px;
-  margin: 8px;
 `;
 
 export const ProfileImage = styled.Image`
@@ -15,7 +14,7 @@ export const ProfileImage = styled.Image`
   height: 40px;
   border-radius: 20px;
   border-width: 2px;
-  border-color: #a855f7;
+  border-color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.blue};
 `;
 
 export const InfoContainer = styled.View`

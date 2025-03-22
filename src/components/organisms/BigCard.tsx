@@ -1,4 +1,4 @@
-import { Colors } from "@/themes";
+import type { Colors } from "@/themes";
 import { Box } from "../atomics/Box";
 import { Typography } from "../atomics/Typography";
 import { TouchableOpacity, View } from "react-native";
@@ -25,7 +25,7 @@ export function BigCard({
             alignItems: "center",
           }}
         >
-          <Typography color={fontColor} style={{ fontSize: 18 }}>
+          <Typography color={fontColor} style={{ fontSize: 18, fontFamily: 'TTChocolates-Medium' }}>
             Novo Registro
           </Typography>
           <Ionicons name="add-outline" size={20} color={fontColor} />

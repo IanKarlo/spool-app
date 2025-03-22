@@ -8,14 +8,15 @@ interface ProfileProps {
   size?: number
   uri: string
   color: Colors
+  singleBorder?: boolean
 }
 
-export default function Profile({ size = 64, color, uri }: ProfileProps) {
+export default function Profile({ size = 64, color, uri, singleBorder = false }: ProfileProps) {
   const theme = useTheme()
   const borderThickness = size/32
   return (
     <Box
-      bgColor='white'
+      bgColor={singleBorder ? color : 'white'}
       borderRadius={size*2}
       style={{
           alignItems: 'center',

@@ -7,8 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export function CarouselList({
   fontColor = 'text1',
-  cardColor = 'lightBlue',
-  cardFontcolor = 'text1',
+  cardColor = 'darkBlue',
   crFn,
   cardFn,
   title,
@@ -16,7 +15,6 @@ export function CarouselList({
 }: {
   fontColor?: Colors;
   cardColor?: Colors;
-  cardFontcolor?: Colors;
   title?: string;
   crFn: () => void;
   cardFn: () => void;
