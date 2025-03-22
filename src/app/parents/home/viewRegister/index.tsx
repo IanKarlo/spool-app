@@ -4,8 +4,9 @@ import { ProfileHeader } from "@/components/molecules/ProfileHeader";
 import { View } from "react-native";
 import { Typography } from "@/components/atomics/Typography";
 import { Tag } from "@/components/molecules/Tag";
-import { theme } from "@/themes";
+import { useTheme } from "styled-components/native";
 export default function Home() {
+  const theme = useTheme();
   return (
     <PageContainer>
       <Header
@@ -16,20 +17,21 @@ export default function Home() {
       <View style={{ gap: 20 }}>
         <View style={{ display: "flex", flexDirection: "column" }}>
           <Typography
+            color='darkBlue'
             style={{
               fontSize: 24,
-              fontWeight: 600,
-              color: "darkBlue",
+              fontWeight: 700,
+              fontFamily: 'TTChocolates-Medium',
             }}
           >
             Detalhes do Registro
           </Typography>
-          <Typography style={{ fontSize: 12, fontWeight: 400, color: "gray" }}>
+          <Typography style={{ fontSize: 12, fontWeight: 400 }} color='text2'>
             Feito em 12/12/2021 às 12h00
           </Typography>
         </View>
         <View style={{ gap: 8 }}>
-            <Typography style={{ fontSize: 20 }}>Autor</Typography>
+            <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Autor</Typography>
             <View
             style={{
               backgroundColor: theme.colors.lightBlue,
@@ -37,14 +39,14 @@ export default function Home() {
               borderRadius: 8,
             }}
           >
-            <Typography>
+            <Typography color='text2'>
                 Bruna Silva (Professora)
             </Typography>
           </View>
 
         </View>
         <View style={{ gap:8 }}>
-          <Typography style={{ fontSize: 20 }}>Sintomas</Typography>
+          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Sintomas</Typography>
           <View
             style={{
               display: "flex",
@@ -55,38 +57,38 @@ export default function Home() {
           >
             <Tag
               icon="airplay"
-              color="darkBlue"
+              color="blue"
               label="Bom-humor"
               variant="active"
             />
             <Tag
               icon="airplay"
-              color="darkBlue"
+              color="blue"
               label="Bom-humor"
               variant="inactive"
             />
             <Tag
               icon="airplay"
-              color="darkBlue"
+              color="blue"
               label="Bom-humor"
               variant="active"
             />
             <Tag
               icon="airplay"
-              color="darkBlue"
+              color="blue"
               label="Bom-humor"
               variant="inactive"
             />
             <Tag
               icon="airplay"
-              color="darkBlue"
+              color="blue"
               label="Bom-humor"
               variant="active"
             />
           </View>
         </View>
         <View style={{ gap:8 }}>
-          <Typography style={{ fontSize: 20 }}>Descrição</Typography>
+          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Descrição</Typography>
           <View
             style={{
               backgroundColor: theme.colors.lightBlue,
@@ -96,7 +98,7 @@ export default function Home() {
               borderRadius: 8,
             }}
           >
-            <Typography>
+            <Typography color='text2'>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae ab illo inventore veritatis et quasi architecto beatae vitae

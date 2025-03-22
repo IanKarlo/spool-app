@@ -39,6 +39,7 @@ export function Button({
             textAlign: "center",
             fontSize: 16,
             fontWeight: "600",
+            fontFamily: 'TTChocolates-Medium',
           }}
         >
           {text}

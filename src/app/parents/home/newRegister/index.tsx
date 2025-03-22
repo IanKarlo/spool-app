@@ -36,7 +36,7 @@ export default function NewRegister() {
                 label="Bom-humor"
                 icon="airplay"
                 variant={selecteds.has(index) ? "active" : "inactive"}
-                color="darkBlue"
+                color="blue"
                 key={index}
                 onPress={() => {
                   if (selecteds.has(index)) {
@@ -58,7 +58,7 @@ export default function NewRegister() {
         </Typography>
         <TextField placeholder="Coloque a descrição aqui..." multiline />
       </View>
-      <Button text="Salvar Registro" color="darkBlue" onPress={() => router.back()} />
+      <Button text="Salvar Registro" color="blue" onPress={() => router.back()} />
     </PageContainer>
   );
 }
