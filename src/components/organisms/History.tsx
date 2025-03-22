@@ -2,7 +2,7 @@ import { TouchableOpacity, View } from "react-native";
 import { Typography } from "../atomics/Typography";
 import { RegisterCard } from "./RegisterCard";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/themes";
+import type { Colors } from "@/themes";
 import RegisterCardList from "./RegisterCardList";
 
 interface RegisterHistoryProps {
@@ -15,14 +15,14 @@ interface RegisterHistoryProps {
 
 export function RegisterHistory({
   hideIcon,
-  cardColor = "purple",
+  cardColor = "lightBlue",
   fontCardColor = "white",
   cardFn,
   historyFn,
 }: RegisterHistoryProps) {
   return (
     <View style={{ gap: 16 }}>
-      <TouchableOpacity onPress={() => historyFn && historyFn()} activeOpacity={hideIcon ? 1 : 0.2}>
+      <TouchableOpacity onPress={() => historyFn?.()} activeOpacity={hideIcon ? 1 : 0.2}>
         <View
           style={{
             display: "flex",
@@ -31,11 +31,11 @@ export function RegisterHistory({
             alignContent: "center",
           }}
         >
-          <Typography style={{ fontSize: 18 }}>Histórico de Registros</Typography>
+          <Typography style={{ fontSize: 18, fontWeight: 600, fontFamily: 'TTChocolates-Medium' }} color="darkBlue">Histórico de Registros</Typography>
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>
-      <RegisterCardList cardFn={cardFn} color={cardColor} fontColor={fontCardColor} cardLimit={4}/>
+      <RegisterCardList cardFn={cardFn} cardLimit={4}/>
     </View>
   );
 }

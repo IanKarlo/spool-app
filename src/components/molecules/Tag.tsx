@@ -23,8 +23,8 @@ const variantStyles = (
     bgColor?: Colors;
     textColor: Colors;
     iconColor: Colors;
-    borderWidth?: number;
-    borderColor?: Colors;
+    borderWidth: number;
+    borderColor: Colors;
   }
 > => ({
   inactive: {
@@ -43,7 +43,7 @@ const variantStyles = (
   white: {
     bgColor: "white",
     borderWidth: 1,
-    borderColor: color,
+    borderColor: 'white',
     textColor: color,
     iconColor: color,
   },
@@ -75,7 +75,7 @@ export function Tag({
             ? theme.colors[styles.bgColor]
             : "transparent",
           borderWidth: styles.borderWidth,
-          borderColor: styles.borderColor,
+          borderColor: theme.colors[styles.borderColor],
           height: 24,
         }}
       >
@@ -96,6 +96,8 @@ export function Tag({
             alignSelf: "center",
             textAlign: "center",
             textAlignVertical: "center",
+            fontWeight: 500,
+            fontFamily: 'TTChocolates-Medium',
           }}
         >
           {label}

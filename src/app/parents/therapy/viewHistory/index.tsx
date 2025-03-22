@@ -19,8 +19,6 @@ export default function viewHistory() {
           </Typography>
       <RegisterCardList 
         cardFn={() => router.push("/parents/teaching/viewRegister")}
-        color="lightBlue"
-        fontColor="darkBlue"
       />
     </PageContainer>
   );

@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <PageContainer>
       <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
-      <BigCard color="darkBlue" fontColor="white" fn={newRegister} />
+      <BigCard color="blue" fontColor="white" fn={newRegister} />
       <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>
     </PageContainer>
   );

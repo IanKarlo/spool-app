@@ -9,7 +9,7 @@ interface TypographyProps extends Omit<TextProps, 'color' | 'fontFamily'> {
   children: React.ReactNode
 }
 
-export function Typography({ color = 'black', children, ...props }: TypographyProps) {
+export function Typography({ color = 'text1', children, ...props }: TypographyProps) {
   return (
     <StyledText
       color={color}

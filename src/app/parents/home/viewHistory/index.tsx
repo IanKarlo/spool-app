@@ -24,7 +24,6 @@ export default function Home() {
           </Typography>
       <RegisterCardList 
         cardFn={() => router.push("/parents/home/viewRegister")}
-        color="darkBlue"
       />
     </PageContainer>
   );

@@ -20,6 +20,8 @@ declare module 'styled-components/native' {
       white: string
       background: string
       tabBarBackground: string
+      text1: string
+      text2: string
     }
     radius: {
       default: number
@@ -43,6 +45,12 @@ export type Spacing = keyof DefaultTheme['spacing']
 
 export const theme: DefaultTheme = {
   colors: {
+    lightBlue: '#2790B00D', // essa cor tinha nos protótipo, mas ainda não estava mapeada para cá
+    blue: '#2790B0',
+    darkBlue: '#2B4E72',
+    text1: '#353432',
+    text2: '#4E4D4A',
+
     purple: '#84329B',
     darkPurple: '#301E4D', // essa cor não tinha nos protótipo, botei qualquer coisa
     pink: '#CE0F69',
@@ -51,9 +59,6 @@ export const theme: DefaultTheme = {
     darkOrange: '#cc7e16',
     green: '#00C389',
     darkGreen: '#00A06B', // essa cor não tinha nos protótipo, botei qualquer coisa
-    lightBlue: '#b0e3f5', // essa cor tinha nos protótipo, mas ainda não estava mapeada para cá
-    blue: '#41B6E6',
-    darkBlue: '#3492B8',
     black: '#000000',
     gray: '#BBBBBB',
     darkGray: '#8F8F8F',
