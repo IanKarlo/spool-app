@@ -1,7 +1,7 @@
 import { createContext, useContext, useLayoutEffect, useState } from 'react'
-import { usePathname } from 'expo-router'
+// import { usePathname } from 'expo-router'
 import type { Colors } from '@/themes'
-import { type TabColor, tabColors } from '@/themes/tabColors'
+// import { type TabColor, tabColors } from '@/themes/tabColors'
 
 type PathnameColorContextType = {
   tabColor: Colors | undefined
@@ -11,28 +11,28 @@ const PathnameColorContext = createContext<PathnameColorContextType | undefined>
   undefined
 )
 
-const DEFAULT_COLOR = 'gray'
+const DEFAULT_COLOR = 'blue'
 
-const getColorFromPathname = (pathname: string): Colors => {
-  const [,main, tab] = pathname.split('/')
-  if (main && tab) {
-    const path = `/${main}/${tab}` as TabColor
-    return tabColors[path] || DEFAULT_COLOR
-  }
-  return DEFAULT_COLOR
-}
+// const getColorFromPathname = (pathname: string): Colors => {
+//   const [,main, tab] = pathname.split('/')
+//   if (main && tab) {
+//     const path = `/${main}/${tab}` as TabColor
+//     return tabColors[path] || DEFAULT_COLOR
+//   }
+//   return DEFAULT_COLOR
+// }
 
 export function PathnameColorProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
+  // const pathname = usePathname()
   const [tabColor, setTabColor] = useState<Colors>(DEFAULT_COLOR)
 
-  useLayoutEffect(() => {
-    setTabColor(getColorFromPathname(pathname))
-  }, [pathname])
+  // useLayoutEffect(() => {
+  //   setTabColor(getColorFromPathname(pathname))
+  // }, [pathname])
 
   return (
     <PathnameColorContext.Provider value={{ tabColor }}>
