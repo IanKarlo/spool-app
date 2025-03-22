@@ -18,7 +18,7 @@ export default function Home() {
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack"/>
         <ProfileHeader profileColor='purple'/>
-        <Button text='Novo Registro' variant='outlined' color='green' onPress={() => newRegister()}></Button>
+        <Button text='Novo Registro' variant='outlined' color='green' onPress={() => newRegister()} />
         <RegisterHistory cardFn={registerView} hideIcon={true}/>
     </PageContainer>
   )

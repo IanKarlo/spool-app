@@ -15,7 +15,7 @@ export function BigCard({
 }) {
   return (
     <TouchableOpacity onPress={() => fn()}>
-      <Box style={{ height: 48, padding: 12 }} bgColor={color}>
+      <Box style={{ height: 48, padding: 12, boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)' }} bgColor={color}>
         <View
           style={{
             display: "flex",

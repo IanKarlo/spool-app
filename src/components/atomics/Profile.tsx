@@ -16,8 +16,8 @@ export default function Profile({ size = 64, color, uri }: ProfileProps) {
   return (
     <Box
       bgColor='white'
+      borderRadius={size*2}
       style={{
-          borderRadius: size*2,
           alignItems: 'center',
           justifyContent: 'center',
           borderColor: theme.colors[color as Colors],

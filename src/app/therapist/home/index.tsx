@@ -27,7 +27,7 @@ export default function Home() {
         <Header name='John Doe' simpleText='Olá,' profileImage='https://github.com/diego3g.png' />
         <BigCard color='purple' fontColor='white' fn={newRegister}/>
         <CarousellList crFn={patients} cardFn={profile} color="green" fontColor='white' cardColor='darkGreen' cardFontcolor='white'/>
-        <RegisterHistory cardFn={registerView}></RegisterHistory>
+        <RegisterHistory cardFn={registerView}/>
     </PageContainer>
   )
 }
