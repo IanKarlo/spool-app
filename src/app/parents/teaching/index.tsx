@@ -28,7 +28,7 @@ export default function Teaching() {
 
   return (
     <PageContainer>
-      <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Ensino do"/>
+      <Header name="Mateus" profileImage="https://github.com/diego3g.png" subtitle1="Ensino do"/>
       <CarouselList crFn={teacherList} title='Professores' cardFn={viewTeacher}  />
       <CarouselList crFn={carerList} title='Cuidadores' cardFn={viewCarer}  />
       <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>

@@ -24,10 +24,11 @@ const alertsByDay = [
 ];
 
 function makeCard(index: number, index2: number) {
-  return <RegisterCard color="pink" fn={cardView} key={`${index}-${index2}`} />;
+  return <RegisterCard fn={cardView} key={`${index}-${index2}`} />;
 }
 
 function makeDays(data: { date: Date; data: number[] }, index: number) {
+
   if (data.date === today) {
     return (
       <View key={index} style={{ gap: 8 }}>
@@ -37,7 +38,9 @@ function makeDays(data: { date: Date; data: number[] }, index: number) {
         </View>
       </View>
     );
-  } else if (data.date === yesterday) {
+  }
+
+  if (data.date === yesterday) {
     return (
       <View key={index} style={{ gap: 8 }}>
         <Typography style={{ fontSize: 20 }}>Ontem</Typography>
@@ -46,22 +49,23 @@ function makeDays(data: { date: Date; data: number[] }, index: number) {
         </View>
       </View>
     );
-  } else {
-    return (
-      <View key={index} style={{ gap: 8 }}>
-        <Typography style={{ fontSize: 20 }}>{`${data.date
-          .getDay()
-          .toLocaleString("en-US", { minimumIntegerDigits: 2 })}/${(
-          data.date.getMonth() + 1
-        ).toLocaleString("en-US", {
-          minimumIntegerDigits: 2,
-        })}/${data.date.getFullYear()}`}</Typography>
-        <View style={{ gap: 12 }}>
-          {data.data.map((alert, index2) => makeCard(index, index2))}
-        </View>
-      </View>
-    );
   }
+
+  return (
+    <View key={index} style={{ gap: 8 }}>
+      <Typography style={{ fontSize: 20 }}>{`${data.date
+        .getDay()
+        .toLocaleString("en-US", { minimumIntegerDigits: 2 })}/${(
+        data.date.getMonth() + 1
+      ).toLocaleString("en-US", {
+        minimumIntegerDigits: 2,
+      })}/${data.date.getFullYear()}`}</Typography>
+      <View style={{ gap: 12 }}>
+        {data.data.map((alert, index2) => makeCard(index, index2))}
+      </View>
+    </View>
+  );
+
 }
 
 export default function Alerts() {
@@ -69,7 +73,7 @@ export default function Alerts() {
     <PageContainer>
       <Header
         name="Alertas"
-        simpleText="Seus"
+        subtitle1="Seus alertas"
         profileImage="https://github.com/diego3g.png"
       />
       <View style={{ gap: 12 }}>

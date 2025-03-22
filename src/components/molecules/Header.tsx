@@ -9,7 +9,8 @@ import { usePathnameColor } from "@/hooks/usePathnameColor";
 
 type headerType = "profile" | "withTitle" | "goBack";
 interface HeaderProps {
-  simpleText?: string;
+  subtitle1?: string;
+  subtitle2?: string;
   name: string;
   profileImage: string;
   headerType?: headerType;
@@ -17,14 +18,14 @@ interface HeaderProps {
 }
 
 export default function Header({
-  simpleText,
+  subtitle1,
+  subtitle2,
   name,
   profileImage,
   headerType = "withTitle",
   hiddenAvatar = false,
 }: HeaderProps) {
   const { tabColor } = usePathnameColor();
-  const text = !simpleText ? "Resumo de" : simpleText;
 
   switch (headerType) {
     case "profile":
@@ -39,14 +40,15 @@ export default function Header({
           <TouchableOpacity onPress={() => router.back()} style={{ alignSelf: "flex-start" }}>
             <Icon name="arrow-left" size={24} color="black" />
           </TouchableOpacity>
-          <Profile uri={profileImage} color={"darkBlue"} size={90} />
+          <Profile uri={profileImage} color={"darkBlue"} size={96} />
           <Typography
             style={{ fontSize: 28, fontFamily: 'TTChocolates-Medium' }}
             color={"darkBlue"}
           >
             {name}
           </Typography>
-          <Typography>{text}</Typography>
+          {subtitle1 && <Typography>{subtitle1}</Typography>}
+          {subtitle2 && <Typography color="text2">{subtitle2}</Typography>}
         </View>
       );
     case "withTitle":
@@ -59,7 +61,7 @@ export default function Header({
           }}
         >
           <View>
-            <Typography>{text}</Typography>
+            <Typography>{subtitle1}</Typography>
             <Typography
               style={{ fontSize: 28, fontWeight: "bold" }}
               color={tabColor}

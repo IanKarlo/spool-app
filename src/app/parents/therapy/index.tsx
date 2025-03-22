@@ -25,7 +25,7 @@ export default function Therapy() {
 
   return (
     <PageContainer>
-      <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Terapia do"/>
+      <Header name="Mateus" profileImage="https://github.com/diego3g.png" subtitle1="Terapia do"/>
       <CarouselList crFn={therapistList} title='Terapeutas' cardFn={viewTherapist} />
       <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} />
     </PageContainer>

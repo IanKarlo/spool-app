@@ -1,10 +1,5 @@
-import { PageContainer } from "@/components/atomics/PageContainer";
-import Header from "@/components/molecules/Header";
-import { RegisterHistory } from "@/components/organisms/History";
-import { ProfileHeader } from "@/components/molecules/ProfileHeader";
-import { Button } from "@/components/atomics/Button";
 import { router } from "expo-router";
-
+import ChildProfilePage from "@/components/pages/ChildProfilePage";
 function registerView() {
   router.push("/educators/home/viewRegister");
 }
@@ -15,20 +10,6 @@ function newRegister() {
 
 export default function StudentProfile() {
   return (
-    <PageContainer>
-      <Header
-        name="John Doe"
-        profileImage="https://github.com/diego3g.png"
-        headerType = "goBack"
-      />
-      <ProfileHeader profileColor="purple" />
-      <Button
-        text="Novo registro"
-        variant="outlined"
-        color="pink"
-        onPress={newRegister}
-      ></Button>
-      <RegisterHistory cardFn={registerView} hideIcon={true} />
-    </PageContainer>
+    <ChildProfilePage addRegister={newRegister} viewRegisterHistory={registerView} />
   );
 }

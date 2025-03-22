@@ -1,18 +1,28 @@
-import { PageContainer } from "@/components/atomics/PageContainer";
-import Header from "@/components/molecules/Header";
-import { View } from "react-native";
-import { Typography } from "@/components/atomics/Typography";
-import { Tag } from "@/components/molecules/Tag";
-import { useTheme } from "styled-components/native";
+import { PageContainer } from "@/components/atomics/PageContainer"
+import Header from "@/components/molecules/Header"
+import { View } from "react-native"
+import { Typography } from "@/components/atomics/Typography"
+import { Tag } from "@/components/molecules/Tag"
+import { useTheme } from "styled-components/native"
+import Profile from '@/components/atomics/Profile'
 
-export default function ViewRegisterPage() {
-  const theme = useTheme();
+type ViewRegisterPageProps = {
+  type: 'parent' | 'educator' | 'therapist'
+  child?: {
+    name: string
+    profileImage: string
+    subtitle: string
+  }
+}
+
+export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps) {
+  const theme = useTheme()
   return (
     <PageContainer>
       <Header
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
-        headerType = "goBack"
+        headerType="goBack"
       />
       <View style={{ gap: 20 }}>
         <View style={{ display: "flex", flexDirection: "column" }}>
@@ -31,8 +41,8 @@ export default function ViewRegisterPage() {
           </Typography>
         </View>
         <View style={{ gap: 8 }}>
-            <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Autor</Typography>
-            <View
+          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Autor</Typography>
+          <View
             style={{
               backgroundColor: theme.colors.lightBlue,
               padding: 12,
@@ -40,12 +50,33 @@ export default function ViewRegisterPage() {
             }}
           >
             <Typography color='text2'>
-                Bruna Silva (Professora)
+              Bruna Silva (Professora)
             </Typography>
           </View>
-
         </View>
-        <View style={{ gap:8 }}>
+        {child && type !== 'parent' && (
+          <View style={{ gap: 8 }}>
+            <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>{type === 'educator' ? 'Aluno' : 'Paciente'}</Typography>
+            <View
+            style={{
+              backgroundColor: theme.colors.lightBlue,
+              padding: 12,
+              borderRadius: 8,
+            }}
+            >
+              <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <Profile uri={child.profileImage} color="blue" size={48} />
+                <View style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Typography color='text1' style={{ fontSize: 16, fontWeight: 600, fontFamily: 'TTChocolates-Medium' }}>
+                    {child.name}
+                  </Typography>
+                  <Typography color='text2'>{child.subtitle}</Typography>
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+        <View style={{ gap: 8 }}>
           <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Sintomas</Typography>
           <View
             style={{
@@ -87,7 +118,7 @@ export default function ViewRegisterPage() {
             />
           </View>
         </View>
-        <View style={{ gap:8 }}>
+        <View style={{ gap: 8 }}>
           <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Descrição</Typography>
           <View
             style={{
@@ -118,5 +149,5 @@ export default function ViewRegisterPage() {
         </View>
       </View>
     </PageContainer>
-  );
+  )
 }

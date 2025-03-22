@@ -8,7 +8,7 @@ import { View } from "react-native"
 export default function carerList() {
   return (
     <PageContainer>
-      <Header name='John Doe' simpleText="prof de Matematica" profileImage="https://github.com/diego3g.png" headerType="goBack" />
+      <Header name='John Doe' subtitle1="prof de Matematica" profileImage="https://github.com/diego3g.png" headerType="goBack" />
       <Typography
         style={{
           fontSize: 20,

@@ -20,65 +20,58 @@ export default function Students() {
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
+        name="Matheus Azevedo"
       />
       <ProfileCard
         fn={profile}
         color="blue"
-        fontColor="white"
         variation="normal"
         info="Turma 1A"
-      />
-      <ProfileCard
-        fn={profile}
-        color="blue"
-        fontColor="white"
-        variation="normal"
-        info="Turma 1A"
+        name="Matheus Azevedo"
       />
     </PageContainer>
   );

@@ -24,7 +24,7 @@ export default function Home() {
   }
   return (
     <PageContainer>
-      <Header name="John Doe" simpleText="Olá," profileImage="https://github.com/diego3g.png" />
+      <Header name="John Doe" subtitle1="Olá," profileImage="https://github.com/diego3g.png" />
       <BigCard color="blue" fontColor="white" fn={newRegister} />
       <CarouselList
         crFn={students}

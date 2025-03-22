@@ -1,20 +1,26 @@
 import type { Colors } from "@/themes";
-import type { PressableProps } from "react-native";
+import type { PressableProps, StyleProp, ViewStyle } from "react-native";
 import { Pressable } from "react-native";
 import { Box } from "./Box";
 import { Typography } from "./Typography";
 import { useTheme } from "styled-components/native";
+import type { ComponentProps } from 'react'
+import { Icon } from '@/components/atomics/Icon'
 
 interface ButtonProps extends Omit<PressableProps, "style"> {
   variant?: "filled" | "outlined";
   color?: Colors;
   text: string;
+  style?: StyleProp<Omit<ViewStyle, 'backgroundColor'>>;
+  rightIcon?: ComponentProps<typeof Icon>["name"];
 }
 
 export function Button({
   variant = "filled",
   color = "pink",
   text,
+  style,
+  rightIcon,
   ...pressableProps
 }: ButtonProps) {
   const theme = useTheme();
@@ -30,7 +36,12 @@ export function Button({
           paddingHorizontal: 16,
           borderWidth: variant === "outlined" ? 2 : 0,
           borderColor:
-            color === "white" ? "black" : theme.colors[color as Colors],
+            color === "white" ? "black" : theme.colors[color as keyof typeof theme.colors],
+          ...(style as object),
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 8,
         }}
       >
         <Typography
@@ -44,6 +55,7 @@ export function Button({
         >
           {text}
         </Typography>
+        {rightIcon && <Icon name={rightIcon} size={18} color={textColor} />}
       </Box>
     </Pressable>
   );

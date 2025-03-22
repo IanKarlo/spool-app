@@ -7,7 +7,7 @@ import { router } from "expo-router"
 export default function viewCarer() {
   return (
     <PageContainer>
-      <Header name='John Doe' simpleText="Cuidador" profileImage="https://github.com/diego3g.png" headerType="profile" />
+      <Header name='John Doe' subtitle1="Cuidador" profileImage="https://github.com/diego3g.png" headerType="profile" />
       <Typography
         style={{
           fontSize: 20,

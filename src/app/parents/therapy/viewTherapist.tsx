@@ -7,7 +7,7 @@ import { router } from "expo-router"
 export default function viewTherapist() {
   return (
     <PageContainer>
-      <Header name='John Doe' simpleText="Psicologo" profileImage="https://github.com/diego3g.png" headerType="profile" />
+      <Header name='John Doe' subtitle1="Psicologo" profileImage="https://github.com/diego3g.png" headerType="profile" />
       <Typography
         style={{
           fontSize: 20,

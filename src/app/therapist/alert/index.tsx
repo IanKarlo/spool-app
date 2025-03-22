@@ -53,7 +53,7 @@ function makeDays(data: {date: Date, data: number[]}, index: number) {
 export default function Alerts() {
   return (
     <PageContainer>
-      <Header name='Alertas' simpleText='Seus' profileImage='https://github.com/diego3g.png' />
+      <Header name='Alertas' subtitle1='Seus' profileImage='https://github.com/diego3g.png' />
       <View style={{gap: 12}}>
         {alertsByDay.map((data, index) => makeDays(data, index))}
       </View>
