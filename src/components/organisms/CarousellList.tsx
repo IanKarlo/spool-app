@@ -5,7 +5,7 @@ import { ScrollView, TouchableOpacity, View } from "react-native";
 import { ProfileCard } from "./ProfileCard";
 import { Ionicons } from "@expo/vector-icons";
 
-export function CarousellList({
+export function CarouselList({
   fontColor = 'text1',
   cardColor = 'lightBlue',
   cardFontcolor = 'text1',

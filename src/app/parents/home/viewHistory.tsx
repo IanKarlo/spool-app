@@ -2,7 +2,7 @@ import { PageContainer } from "@/components/atomics/PageContainer";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { BigCard } from "@/components/organisms/BigCard";
-import { CarousellList } from "@/components/organisms/CarousellList";
+import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import RegisterCardList from "@/components/organisms/RegisterCardList";
 import { router } from "expo-router";

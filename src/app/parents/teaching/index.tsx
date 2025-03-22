@@ -2,7 +2,7 @@ import { PageContainer } from "@/components/atomics/PageContainer";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { BigCard } from "@/components/organisms/BigCard";
-import { CarousellList } from "@/components/organisms/CarousellList";
+import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
 
@@ -29,8 +29,8 @@ export default function Teaching() {
   return (
     <PageContainer>
       <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Ensino do"/>
-      <CarousellList crFn={teacherList} title='Professores' cardFn={viewTeacher}  />
-      <CarousellList crFn={carerList} title='Cuidadores' cardFn={viewCarer}  />
+      <CarouselList crFn={teacherList} title='Professores' cardFn={viewTeacher}  />
+      <CarouselList crFn={carerList} title='Cuidadores' cardFn={viewCarer}  />
       <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>
     </PageContainer>
   );

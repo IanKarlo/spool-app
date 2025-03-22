@@ -2,7 +2,7 @@ import { PageContainer } from "@/components/atomics/PageContainer";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { BigCard } from "@/components/organisms/BigCard";
-import { CarousellList } from "@/components/organisms/CarousellList";
+import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
 
@@ -26,7 +26,7 @@ export default function Home() {
     <PageContainer>
       <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
       <BigCard color="orange" fontColor="white" fn={newRegister} />
-      <CarousellList
+      <CarouselList
         crFn={students}
         cardFn={studentProfile}
         color="blue"

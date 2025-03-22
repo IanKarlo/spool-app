@@ -2,7 +2,7 @@ import { PageContainer } from "@/components/atomics/PageContainer";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { BigCard } from "@/components/organisms/BigCard";
-import { CarousellList } from "@/components/organisms/CarousellList";
+import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
 
@@ -26,7 +26,7 @@ export default function Therapy() {
   return (
     <PageContainer>
       <Header name="Mateus" profileImage="https://github.com/diego3g.png" simpleText="Terapia do"/>
-      <CarousellList crFn={therapistList} title='Terapeutas' cardFn={viewTherapist} />
+      <CarouselList crFn={therapistList} title='Terapeutas' cardFn={viewTherapist} />
       <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} />
     </PageContainer>
   );
