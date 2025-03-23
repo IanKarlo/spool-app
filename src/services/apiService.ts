@@ -232,6 +232,21 @@ export const usePostTherapist = () => {
   });
 };
 
+export const useGetUnreadRecords = (userId: number) => {
+  return useQuery({
+    queryKey: ['getUnreadRecords', userId],
+    queryFn: async () => {
+      try {
+        const response = await apiClient.get(`/alerts/${userId}`);
+        return response.data;
+      } catch (error) {
+        console.error("Erro na API GET Registros não lidos:", error);
+        throw error;
+      }
+    },
+  });
+};
+
 
 
 
