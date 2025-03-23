@@ -1,18 +1,5 @@
 import axios from "axios";
 
-type postReadBody = {
-  recordId: number;
-  userId: number;
-  userRole: "Educationist" | "Therapist" | "Child";
-};
-
-type getReadRecordResponse = {
-  recordId: number;
-  userId: number;
-  userRole: "Educationist" | "Therapist" | "Child";
-  readAt: string;
-};
-
 class ApiService {
   private apiClient;
 
