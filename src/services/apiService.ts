@@ -177,7 +177,7 @@ class ApiService {
   }
 }
 
-export const apiService = new ApiService();
+export const api = new ApiService();
 
 // Usage example:
 // import { apiService } from "./services/apiService";
