@@ -180,5 +180,8 @@ class ApiService {
 export const api = new ApiService();
 
 // Usage example:
-// import { apiService } from "./services/apiService";
+// import { api } from "./services/apiService";
 // const data = await apiService.getChildRecord('123');
+
+// IN REACT
+// const { data, error, isLoading } = useQuery('getSymptoms', () => api.getSymptoms());
