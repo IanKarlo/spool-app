@@ -5,7 +5,7 @@ class ApiService {
 
   constructor() {
     this.apiClient = axios.create({
-      baseURL: "https://your-api-url.com", // Replace with your API base URL
+      baseURL: "http://localhost:3000", // Replace with your API base URL
       timeout: 10000, // Set a timeout for requests
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,9 @@ class ApiService {
 
   public async getChildRecord(childId: string) {
     try {
-      const response = await this.apiClient.get(`/record/child/${childId}`);
+      const response = await this.apiClient.get<getChildRecordResponse>(
+        `/record/child/${childId}`
+      );
       return response.data;
     } catch (error) {
       console.error("Erro na API GET Registro da Criança:", error);
@@ -25,7 +27,7 @@ class ApiService {
 
   public async getChildTherapistRecord(childId: string, therapistId: string) {
     try {
-      const response = await this.apiClient.get(
+      const response = await this.apiClient.get<getChildTherapistRecordResponse>(
         `/record/child/${childId}/therapist/${therapistId}`
       );
       return response.data;
@@ -40,7 +42,7 @@ class ApiService {
     educationistId: string
   ) {
     try {
-      const response = await this.apiClient.get(
+      const response = await this.apiClient.get<getChildEducationistRecord>(
         `/record/child/${childId}/educationist/${educationistId}`
       );
       return response.data;
@@ -52,7 +54,7 @@ class ApiService {
 
   public async getEducationistRecord(educationistId: string) {
     try {
-      const response = await this.apiClient.get(
+      const response = await this.apiClient.get<getEducationistRecordResponse>(
         `/record/educationist/${educationistId}`
       );
       return response.data;
@@ -64,7 +66,7 @@ class ApiService {
 
   public async getTherapistRecord(therapistId: string) {
     try {
-      const response = await this.apiClient.get(
+      const response = await this.apiClient.get<getTherapistRecordResponse>(
         `/record/therapist/${therapistId}`
       );
       return response.data;
