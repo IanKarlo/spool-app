@@ -40,7 +40,7 @@ export default function Home() {
                 label="Bom-humor"
                 icon="airplay"
                 variant={selecteds.has(index) ? "active" : "inactive"}
-                color="purple"
+                color="blue"
                 key={index}
                 onPress={() => {
                   if (selecteds.has(index)) {
@@ -58,11 +58,11 @@ export default function Home() {
       </View>
       <View style={{ gap: 12 }}>
         <Typography style={{ fontSize: 18 }}>
-          Descreva um pouco melhor
+          Descrição
         </Typography>
         <TextField placeholder="Coloque a descrição aqui..." multiline />
       </View>
-      <Button text="salvar" color="purple" onPress={() => router.back()} />
+      <Button text="salvar" color="blue" onPress={() => router.back()} />
     </PageContainer>
   );
 }

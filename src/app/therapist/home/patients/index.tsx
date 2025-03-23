@@ -13,15 +13,15 @@ export default function Home() {
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack" />
         <Typography style={{fontSize: 18}}>Pacientes</Typography>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
-        <ProfileCard fn={profile} color='green' fontColor='white' variation='normal'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
+        <ProfileCard fn={profile} color='blue' fontColorName='black' variation='normal' name='Joaquim barbosa' info='Nível de suporte II'/>
     </PageContainer>
   )
 }

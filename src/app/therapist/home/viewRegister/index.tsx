@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <PageContainer>
         <Header name='John Doe' profileImage='https://github.com/diego3g.png' headerType = "goBack"/>
-        <ProfileHeader nameColor='purple' profileColor='purple'/>
+        <ProfileHeader nameColor='blue' profileColor='darkBlue'/>
         <View style={{gap: 12}}>
             <View>
                 <Typography style={{fontSize: 32}}>Terapeuta</Typography>
@@ -19,11 +19,11 @@ export default function Home() {
             <View>
                 <Typography style={{fontSize: 20}}>Sintomas</Typography>
                 <View style={{display: 'flex', flexDirection: 'row', gap: 4, flexWrap: 'wrap'}}>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="inactive"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="inactive"/>
-                    <Tag icon="airplay" color="purple" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="blue" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="blue" label="Bom-humor" variant="inactive"/>
+                    <Tag icon="airplay" color="blue" label="Bom-humor" variant="active"/>
+                    <Tag icon="airplay" color="blue" label="Bom-humor" variant="inactive"/>
+                    <Tag icon="airplay" color="blue" label="Bom-humor" variant="active"/>
                 </View>
             </View>
             <View>

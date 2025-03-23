@@ -13,6 +13,7 @@ interface ButtonProps extends Omit<PressableProps, "style"> {
   text: string;
   style?: StyleProp<Omit<ViewStyle, 'backgroundColor'>>;
   rightIcon?: ComponentProps<typeof Icon>["name"];
+  textWeight?: "bold" | "normal";
 }
 
 export function Button({
@@ -20,12 +21,14 @@ export function Button({
   color = "pink",
   text,
   style,
+  textWeight = "normal",
   rightIcon,
   ...pressableProps
 }: ButtonProps) {
   const theme = useTheme();
   const backgroundColor = variant === "filled" ? color : "white";
   const textColor = variant === "filled" ? "white" : color;
+  const fontWeight = textWeight === "normal" ? "600" : "900";
 
   return (
     <Pressable {...pressableProps}>
@@ -49,8 +52,8 @@ export function Button({
           style={{
             textAlign: "center",
             fontSize: 16,
-            fontWeight: "600",
             fontFamily: 'TTChocolates-Medium',
+            fontWeight,
           }}
         >
           {text}

@@ -26,7 +26,7 @@ export function BigCard({
           }}
         >
           <Typography color={fontColor} style={{ fontSize: 18, fontFamily: 'TTChocolates-Medium' }}>
-            Novo Registro
+            Criar Registro
           </Typography>
           <Ionicons name="add-outline" size={20} color={fontColor} />
         </View>
