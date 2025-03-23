@@ -1,11 +1,24 @@
 import axios from "axios";
 
+type postReadBody = {
+  recordId: number;
+  userId: number;
+  userRole: "Educationist" | "Therapist" | "Child";
+};
+
+type getReadRecordResponse = {
+  recordId: number;
+  userId: number;
+  userRole: "Educationist" | "Therapist" | "Child";
+  readAt: string;
+};
+
 class ApiService {
   private apiClient;
 
   constructor() {
     this.apiClient = axios.create({
-      baseURL: "http://localhost:3000", // Replace with your API base URL
+      baseURL: "http://localhost:3003/api", // Replace with your API base URL
       timeout: 10000, // Set a timeout for requests
       headers: {
         "Content-Type": "application/json",
@@ -27,9 +40,10 @@ class ApiService {
 
   public async getChildTherapistRecord(childId: string, therapistId: string) {
     try {
-      const response = await this.apiClient.get<getChildTherapistRecordResponse>(
-        `/record/child/${childId}/therapist/${therapistId}`
-      );
+      const response =
+        await this.apiClient.get<getChildTherapistRecordResponse>(
+          `/record/child/${childId}/therapist/${therapistId}`
+        );
       return response.data;
     } catch (error) {
       console.error("Erro na API GET Registro do Terapeuta da Criança:", error);
@@ -76,6 +90,7 @@ class ApiService {
     }
   }
 
+  // Não existe essa rota
   public async postRecord(data: any) {
     try {
       const response = await this.apiClient.post(`/record`, data);
@@ -86,6 +101,7 @@ class ApiService {
     }
   }
 
+  // Essa rota não faz nada no back
   public async getChildEducationist(childId: string) {
     try {
       const response = await this.apiClient.get(
@@ -98,6 +114,7 @@ class ApiService {
     }
   }
 
+  // Essa rota não faz nada no back
   public async getChildTherapist(childId: string) {
     try {
       const response = await this.apiClient.get(`/child/${childId}/therapist`);
@@ -108,7 +125,7 @@ class ApiService {
     }
   }
 
-  public async getReadRecord(recordId: string) {
+  public async getReadRecord(recordId: string): Promise<getReadRecordResponse> {
     try {
       const response = await this.apiClient.get(`/read/${recordId}`);
       return response.data;
@@ -118,7 +135,7 @@ class ApiService {
     }
   }
 
-  public async postRead(data: any) {
+  public async postRead(data: postReadBody): Promise<void> {
     try {
       const response = await this.apiClient.post(`/read`, data);
       return response.data;
