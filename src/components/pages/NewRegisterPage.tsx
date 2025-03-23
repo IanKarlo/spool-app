@@ -26,7 +26,7 @@ export default function NewRegisterPage({type}: NewRegisterPageProps) {
     <Typography color="darkBlue" style={{ fontSize: 24, fontFamily: 'TTChocolates-Medium' }}>Novo Registro</Typography>
     {type !== 'parent' && (
       <View style={{ gap: 12 }}>
-        <Typography style={{ fontSize: 18 }}>Selecionar aluno</Typography>
+        <Typography style={{ fontSize: 18 }}>Selecionar {type === 'educator' ? 'Aluno' : 'Paciente'}</Typography>
         <Select itens={itens} onSelect={(item) => console.log("Selecionado:", item)} />
       </View>
       )}
@@ -64,7 +64,7 @@ export default function NewRegisterPage({type}: NewRegisterPageProps) {
       </View>
       <View style={{ gap: 12 }}>
         <Typography style={{ fontSize: 18 }}>
-          Descreva um pouco melhor
+          Descrição
         </Typography>
         <TextField placeholder="Coloque a descrição aqui..." multiline />
       </View>
