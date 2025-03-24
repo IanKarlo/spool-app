@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { RegisterCard } from "./RegisterCard"
-import { formatToBrazilianDate } from '@/utils/string'
+import { formatToBrazilianDate, mapRoleToPortuguese } from '@/utils/string'
 
 interface CardListProps {
   cardLimit?: number
@@ -14,7 +14,7 @@ export function CardList({ cardLimit, cardFn, data }: CardListProps) {
   return (
     <View style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {data?.slice(0, cardLimit).map((card) => (
-        <RegisterCard key={card.id} fn={cardFn} bodyText={card.content} title={String(card.authorId)} subtitle={card.authorRole} date={formatToBrazilianDate(card.createdAt)} />
+        <RegisterCard tags={card.symptoms} key={card.id} fn={cardFn} bodyText={card.content} title={String(card.authorId)} subtitle={mapRoleToPortuguese(card.authorRole)} date={formatToBrazilianDate(card.createdAt)} />
       ))}
     </View>
   )

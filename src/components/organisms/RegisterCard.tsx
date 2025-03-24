@@ -10,6 +10,7 @@ interface RegisterCardProps {
   date?: string;
   bodyText?: string;
   fn: () => void;
+  tags?: string[];
 }
 
 export function RegisterCard({
@@ -18,6 +19,7 @@ export function RegisterCard({
   date,
   bodyText,
   fn,
+  tags,
 }: RegisterCardProps) {
   return (
     <TouchableOpacity onPress={() => fn()}>
@@ -55,24 +57,15 @@ export function RegisterCard({
               gap: 4,
             }}
           >
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="white"
-            />
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="white"
-            />
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="white"
-            />
+            {tags?.map((tag, index) => (
+              <Tag
+                key={tag + index}
+                icon="airplay"
+                color="blue"
+                label={tag}
+                variant="white"
+              />
+            ))}
           </View>
           {bodyText && (
             <Typography color='text1' style={{ fontSize: 14 }} numberOfLines={2}>

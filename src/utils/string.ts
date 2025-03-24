@@ -9,3 +9,15 @@ export function formatToBrazilianDate(isoString: string): string {
   return `${formattedDate} às ${hours}h${minutes}`;
 }
 
+export function mapRoleToPortuguese(role: string): string {
+  switch (role) {
+    case 'Child':
+      return 'Responsável';
+    case 'Educationist':
+      return 'Educador';
+    case 'Therapist':
+      return 'Terapeuta';
+    default:
+      return role;
+  }
+}

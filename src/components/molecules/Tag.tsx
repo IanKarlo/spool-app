@@ -8,7 +8,7 @@ import { useTheme } from "styled-components";
 type Variant = "inactive" | "active" | "white";
 
 interface TagProps {
-  icon: ComponentProps<typeof Icon>["name"];
+  icon?: ComponentProps<typeof Icon>["name"];
   label: string;
   color: Colors;
   variant?: Variant;
@@ -50,7 +50,7 @@ const variantStyles = (
 });
 
 export function Tag({
-  icon,
+  icon = "help-circle",
   label,
   color,
   variant = "inactive",
