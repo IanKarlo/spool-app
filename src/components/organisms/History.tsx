@@ -5,8 +5,6 @@ import type { Colors } from "@/themes";
 import RegisterCardList from "./RegisterCardList";
 interface RegisterHistoryProps {
   hideIcon?: boolean;
-  cardColor?: Colors;
-  fontCardColor?: Colors;
   cardFn: () => void;
   historyFn?: () => void;
   data?: getChildRecordResponse['data'];
@@ -14,8 +12,6 @@ interface RegisterHistoryProps {
 
 export function RegisterHistory({
   hideIcon,
-  cardColor = "lightBlue",
-  fontCardColor = "white",
   cardFn,
   historyFn,
   data
