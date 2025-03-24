@@ -1,16 +1,15 @@
 import { TouchableOpacity, View } from "react-native";
 import { Typography } from "../atomics/Typography";
-import { RegisterCard } from "./RegisterCard";
 import { Ionicons } from "@expo/vector-icons";
 import type { Colors } from "@/themes";
 import RegisterCardList from "./RegisterCardList";
-
 interface RegisterHistoryProps {
   hideIcon?: boolean;
   cardColor?: Colors;
   fontCardColor?: Colors;
   cardFn: () => void;
   historyFn?: () => void;
+  data?: getChildRecordResponse['data'];
 }
 
 export function RegisterHistory({
@@ -19,6 +18,7 @@ export function RegisterHistory({
   fontCardColor = "white",
   cardFn,
   historyFn,
+  data
 }: RegisterHistoryProps) {
   return (
     <View style={{ gap: 16 }}>
@@ -35,7 +35,7 @@ export function RegisterHistory({
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>
-      <RegisterCardList cardFn={cardFn} cardLimit={4}/>
+      <RegisterCardList data={data} cardFn={cardFn} cardLimit={4}/>
     </View>
   );
 }

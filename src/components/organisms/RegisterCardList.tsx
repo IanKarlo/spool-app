@@ -5,15 +5,15 @@ import type { Colors } from "@/themes"
 interface CardListProps {
   cardLimit?: number
   cardFn: () => void
+  data?: getChildRecordResponse['data'];
 }
 
-export function CardList({ cardLimit, cardFn }: CardListProps) {
-  const cards = MOCK_DATA
+export function CardList({ cardLimit, cardFn, data }: CardListProps) {
 
   return (
     <View style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      {cards.slice(0, cardLimit).map((card) => (
-        <RegisterCard key={card.id} fn={cardFn} {...card} />
+      {data?.slice(0, cardLimit).map((card) => (
+        <RegisterCard key={card.id} fn={cardFn} bodyText={card.content} title={String(card.authorId)} subtitle={card.authorRole} date={card.createdAt} />
       ))}
     </View>
   )

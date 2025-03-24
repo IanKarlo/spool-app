@@ -5,8 +5,10 @@ import { BigCard } from "@/components/organisms/BigCard";
 import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
-
+import { useGetChildRecord } from "@/services/apiService";
 export default function Home() {
+  const { data, error, isLoading } = useGetChildRecord(1);
+  
   function newRegister() {
     router.push("/parents/home/newRegister");
   }
@@ -21,7 +23,7 @@ export default function Home() {
     <PageContainer>
       <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
       <BigCard color="blue" fontColor="white" fn={newRegister} />
-      <RegisterHistory cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>
+      <RegisterHistory data={data?.data} cardFn={viewRegister} historyFn={viewHistory} cardColor="lightBlue" fontCardColor="darkBlue"/>
     </PageContainer>
   );
 }
