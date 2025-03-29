@@ -4,31 +4,80 @@ import { TextField } from "@/components/atomics/TextField";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { Tag } from "@/components/molecules/Tag";
-import { Select } from '@/components/organisms/Select'
+import { Select } from "@/components/organisms/Select";
 import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
+import { Controller, useForm } from "react-hook-form";
+import { usePostRecord } from "@/services/apiService";
+
+type FormValues = {
+  authorId: number;
+  authorRole: string;
+  authorName: string;
+  childId: number | null;
+  symptoms: string[];
+  content: string;
+};
 
 type NewRegisterPageProps = {
-  type: 'parent' | 'educator' | 'therapist'
-}
+  type: "parent" | "educator" | "therapist";
+  children?: any[] | null;
+  isLoading?: boolean;
+  error?: Error | null;
+  currentUser: any;
+};
 
-export default function NewRegisterPage({type}: NewRegisterPageProps) {
-  const [selecteds, setSelecteds] = useState<Set<number>>(new Set());
+export default function NewRegisterPage({
+  type,
+  isLoading,
+  error,
+  children,
+  currentUser,
+}: NewRegisterPageProps) {
+  const { mutateAsync } = usePostRecord();
+  const [submitting, setSubmitting] = useState(false);
+  const { setValue, watch, handleSubmit, control } = useForm<FormValues>({
+    defaultValues: {
+      authorId: currentUser.id,
+      authorRole: currentUser.role,
+      authorName: currentUser.name,
+      childId: children && children.length > 0 ? children[0].id : null,
+      symptoms: [],
+      content: "",
+    },
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    setSubmitting(true);
+    await mutateAsync(data);
+    setSubmitting(false);
+    router.back();
+  };
 
   return (
-    <PageContainer>
+    <PageContainer isLoading={isLoading} error={error}>
       <Header
-        headerType = "goBack"
+        headerType="goBack"
         name="John Doe"
         profileImage="https://github.com/diego3g.png"
       />
-    <Typography color="darkBlue" style={{ fontSize: 24, fontFamily: 'TTChocolates-Medium' }}>Novo Registro</Typography>
-    {type !== 'parent' && (
-      <View style={{ gap: 12 }}>
-        <Typography style={{ fontSize: 18 }}>Selecionar {type === 'educator' ? 'Aluno' : 'Paciente'}</Typography>
-        <Select itens={itens} onSelect={(item) => console.log("Selecionado:", item)} />
-      </View>
+      <Typography
+        color="darkBlue"
+        style={{ fontSize: 24, fontFamily: "TTChocolates-Medium" }}
+      >
+        Novo Registro
+      </Typography>
+      {type !== "parent" && children && children.length > 0 && (
+        <View style={{ gap: 12 }}>
+          <Typography style={{ fontSize: 18 }}>
+            Selecionar {type === "educator" ? "Aluno" : "Paciente"}
+          </Typography>
+          <Select
+            itens={children}
+            onSelect={(item) => setValue("childId", item.id)}
+          />
+        </View>
       )}
       <View style={{ gap: 12 }}>
         <Typography style={{ fontSize: 18 }}>Sintomas</Typography>
@@ -40,21 +89,34 @@ export default function NewRegisterPage({type}: NewRegisterPageProps) {
             flexWrap: "wrap",
           }}
         >
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => {
+          {[
+            "Feliz",
+            "Triste",
+            "Ansioso",
+            "Irritado",
+            "Calmo",
+            "Desanimado",
+            "Eufórico",
+            "Apreensivo",
+          ].map((symptoms) => {
             return (
               <Tag
-                label="Bom-humor"
+                label={symptoms}
                 icon="airplay"
-                variant={selecteds.has(index) ? "active" : "inactive"}
+                variant={
+                  watch("symptoms").includes(symptoms) ? "active" : "inactive"
+                }
                 color="blue"
-                key={index}
+                key={symptoms}
                 onPress={() => {
-                  if (selecteds.has(index)) {
-                    selecteds.delete(index);
+                  const selecteds = new Set(watch("symptoms"));
+                  if (selecteds.has(symptoms)) {
+                    selecteds.delete(symptoms);
                     const newSelecteds = new Set(selecteds);
-                    setSelecteds(newSelecteds);
+                    setValue("symptoms", [...newSelecteds]);
                   } else {
-                    setSelecteds(new Set([...selecteds, index]));
+                    selecteds.add(symptoms);
+                    setValue("symptoms", [...selecteds]);
                   }
                 }}
               />
@@ -63,33 +125,27 @@ export default function NewRegisterPage({type}: NewRegisterPageProps) {
         </View>
       </View>
       <View style={{ gap: 12 }}>
-        <Typography style={{ fontSize: 18 }}>
-          Descrição
-        </Typography>
-        <TextField placeholder="Coloque a descrição aqui..." multiline />
+        <Typography style={{ fontSize: 18 }}>Descrição</Typography>
+        <Controller
+          control={control}
+          name="content"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              placeholder="Coloque a descrição aqui..."
+              multiline
+              onChangeText={onChange}
+              onBlur={onBlur}
+              value={value}
+            />
+          )}
+        />
       </View>
-      <Button text="Salvar Registro" color="blue" onPress={() => router.back()} />
+      <Button
+        text="Salvar Registro"
+        color="blue"
+        onPress={handleSubmit(onSubmit)}
+        isLoading={submitting}
+      />
     </PageContainer>
   );
 }
-
-const itens = [
-  {
-    id: "1",
-    name: "Mateus Azevedo",
-    className: "Turma 1A",
-    imageUrl: "https://github.com/diego3g.png",
-  },
-  {
-    id: "2",
-    name: "Maria Silva",
-    className: "Turma 2B",
-    imageUrl: "https://github.com/diego3g.png",
-  },
-  {
-    id: "3",
-    name: "João Souza",
-    className: "Turma 3C",
-    imageUrl: "https://github.com/diego3g.png",
-  },
-];
