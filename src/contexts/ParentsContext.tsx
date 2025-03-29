@@ -1,9 +1,10 @@
-import { useGetChildRecord, useGetUserByToken } from "@/services/apiService";
+import { useGetChildEducationist, useGetChildRecord, useGetUserByToken } from "@/services/apiService";
 import React, { createContext, useContext, useMemo } from "react";
 
 type ParentsContextType = {
   user: getUserResponse["data"] | undefined;
-  childRecords: any[] | undefined;
+  childRecords: ChildRecord[] | undefined;
+  childEducationist: getChildEducationistResponse["data"] | undefined;
   isLoading: boolean;
   error: Error | null;
 };
@@ -23,21 +24,32 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
     error: errorChildRecord,
   } = useGetChildRecord(1); // You'll want to make this ID dynamic based on the actual child ID
 
+  const {
+    data: childEducationistData,
+    error: errorChildEducationist,
+    isLoading: isLoadingChildEducationist,
+  } = useGetChildEducationist(1);
+
   const childRecords = useMemo(
     () => getChildRecordData && getChildRecordData.data,
     [getChildRecordData]
   );
 
+  const childEducationist = useMemo(
+    () => childEducationistData && childEducationistData.data,
+    [childEducationistData]
+  );
+
   const user = useMemo(() => getUserData && getUserData.data, [getUserData]);
 
   const isLoading = useMemo(
-    () => isLoadingUser || isLoadingChildRecord,
-    [isLoadingUser, isLoadingChildRecord]
+    () => isLoadingUser || isLoadingChildRecord || isLoadingChildEducationist,
+    [isLoadingUser, isLoadingChildRecord, isLoadingChildEducationist]
   );
 
   const error = useMemo(
-    () => errorUser || errorChildRecord,
-    [errorUser, errorChildRecord]
+    () => errorUser || errorChildRecord || errorChildEducationist,
+    [errorUser, errorChildRecord, errorChildEducationist]
   );
 
   return (
@@ -45,6 +57,7 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         childRecords,
+        childEducationist,
         isLoading,
         error,
       }}
