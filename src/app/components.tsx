@@ -74,7 +74,27 @@ export default function Index() {
           <Tag icon='smile' label='Home' variant='white' color='purple' />
         </Box>
 
+      <View style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {tagTexts.map((text) => (
+          <Tag key={text} label={text} variant='active' color='purple' />
+        ))}
+      </View>
+
       </PageContainer>
     </ScrollView>
   )
 }
+
+const tagTexts = [
+  "Gritos",
+  "Agitação",
+  "Distração",
+  "Mau-humor",
+  "Motivação",
+  "Bom-humor",
+  "Empatia",
+  "Foco",
+  "Ansiedade",
+  "Agressividade",
+  "Criatividade"
+];

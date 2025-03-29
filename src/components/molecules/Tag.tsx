@@ -1,4 +1,4 @@
-import { Icon } from "@/components/atomics/Icon";
+import { Icon, type IconProps } from "@/components/atomics/Icon";
 import { Typography } from "@/components/atomics/Typography";
 import type { Colors } from "@/themes";
 import type { ComponentProps } from "react";
@@ -8,7 +8,7 @@ import { useTheme } from "styled-components";
 type Variant = "inactive" | "active" | "white";
 
 interface TagProps {
-  icon?: ComponentProps<typeof Icon>["name"];
+  icon?: IconProps['name'];
   label: string;
   color: Colors;
   variant?: Variant;
@@ -50,7 +50,7 @@ const variantStyles = (
 });
 
 export function Tag({
-  icon = "help-circle",
+  icon,
   label,
   color,
   variant = "inactive",
@@ -87,7 +87,7 @@ export function Tag({
             width: 12,
           }}
         >
-          <Icon name={icon} size={12} color={styles.iconColor} />
+          <Icon name={icon || getIconName(label)} size={12} color={styles.iconColor} />
         </View>
         <Typography
           color={styles.textColor as Colors}
@@ -106,3 +106,22 @@ export function Tag({
     </Pressable>
   );
 }
+
+const getIconName = (text?: string): IconProps['name'] => {
+  const iconMap: { [key: string]: IconProps['name'] } = {
+    "Gritos": "frown",
+    "Agitação": "battery-charging",
+    "Distração": "meh",
+    "Mau-humor": "frown",
+    "Motivação": "check",
+    "Bom-humor": "smile",
+    "Empatia": "heart",
+    "Foco": "eye",
+    "Ansiedade": "alert-triangle",
+    "Agressividade": "thumbs-down",
+    "Criatividade": "star",
+  };
+
+  return iconMap[text || ""] || "help-circle";
+};
+

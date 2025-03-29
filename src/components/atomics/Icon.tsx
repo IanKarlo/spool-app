@@ -3,7 +3,7 @@ import type { Colors } from '@/themes'
 import type { ComponentProps } from 'react'
 import { useTheme } from 'styled-components/native'
 
-interface IconProps extends Omit<ComponentProps<typeof Feather>, 'color'> {
+export interface IconProps extends Omit<ComponentProps<typeof Feather>, 'color'> {
   color?: Colors
   size?: number
 }

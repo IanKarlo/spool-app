@@ -60,7 +60,6 @@ export function RegisterCard({
             {tags?.map((tag, index) => (
               <Tag
                 key={tag + index}
-                icon="airplay"
                 color="blue"
                 label={tag}
                 variant="white"
