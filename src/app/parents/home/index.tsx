@@ -20,7 +20,7 @@ export default function Home() {
   }
 
   return (
-    <PageContainer>
+    <PageContainer isLoading={isLoading} error={error}>
       <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
       <BigCard color="blue" fontColor="white" fn={newRegister} />
       <RegisterHistory data={data?.data} cardFn={viewRegister} historyFn={viewHistory}/>
