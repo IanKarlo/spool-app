@@ -7,6 +7,8 @@ import { useFonts } from 'expo-font'
 import { PathnameColorProvider } from '@/hooks/usePathnameColor'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const queryClient = new QueryClient()
+
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     'TTChocolates-Regular': require('../../assets/fonts/TT Chocolates Trial Regular.otf'),
@@ -15,7 +17,7 @@ export default function RootLayout() {
   })
 
   const pathname = usePathname()
-  const queryClient = new QueryClient()
+
   console.log(pathname)
 
   // const { expoPushToken} = usePushNotifications();

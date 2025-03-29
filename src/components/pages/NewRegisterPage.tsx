@@ -10,6 +10,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { usePostRecord } from "@/services/apiService";
+import { useQueryClient } from '@tanstack/react-query'
 
 type FormValues = {
   authorId: number;
@@ -36,13 +37,14 @@ export default function NewRegisterPage({
   currentUser,
 }: NewRegisterPageProps) {
   const { mutateAsync } = usePostRecord();
+  const queryClient = useQueryClient();
   const [submitting, setSubmitting] = useState(false);
   const { setValue, watch, handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       authorId: currentUser.id,
       authorRole: currentUser.role,
       authorName: currentUser.name,
-      childId: children && children.length > 0 ? children[0].id : null,
+      childId: currentUser.role === "Child" ? currentUser.id : children && children.length > 0 ? children[0].id : null,
       symptoms: [],
       content: "",
     },
@@ -51,6 +53,11 @@ export default function NewRegisterPage({
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
     await mutateAsync(data);
+    queryClient.invalidateQueries({ queryKey: ["getEducationistRecord"] });
+    queryClient.invalidateQueries({ queryKey: ["getChildEducationistRecord"] });
+    queryClient.invalidateQueries({ queryKey: ["getTherapistRecord"] });
+    queryClient.invalidateQueries({ queryKey: ["getChildTherapistRecord"] });
+    queryClient.invalidateQueries({ queryKey: ["getChildRecord"] });
     setSubmitting(false);
     router.back();
   };
@@ -102,7 +109,6 @@ export default function NewRegisterPage({
             return (
               <Tag
                 label={symptoms}
-                icon="airplay"
                 variant={
                   watch("symptoms").includes(symptoms) ? "active" : "inactive"
                 }
