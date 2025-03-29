@@ -87,7 +87,7 @@ export default function ViewRegisterPage({
               borderRadius: 8,
             }}
           >
-            <Typography color="text2">{`${record.authorName} ${
+            <Typography color="text2">{`${record.authorName} - ${
               roleMap[record.authorRole]
             }`}</Typography>
           </View>
@@ -161,18 +161,11 @@ export default function ViewRegisterPage({
             {record.symptoms.map((symptom, index) => (
               <Tag
                 key={index}
-                icon="airplay"
                 color="blue"
                 label={symptom}
                 variant="active"
               />
             ))}
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="active"
-            />
           </View>
         </View>
         <View style={{ gap: 8 }}>

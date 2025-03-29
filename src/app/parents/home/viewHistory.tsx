@@ -1,13 +1,12 @@
 import { PageContainer } from "@/components/atomics/PageContainer"
 import { Typography } from "@/components/atomics/Typography"
 import Header from "@/components/molecules/Header"
-import { BigCard } from "@/components/organisms/BigCard"
-import { CarouselList } from "@/components/organisms/CarousellList"
-import { RegisterHistory } from "@/components/organisms/History"
 import RegisterCardList from "@/components/organisms/RegisterCardList"
 import { router } from "expo-router"
+import { useParents } from "@/contexts/ParentsContext"
 
 export default function Home() {
+  const { childRecords } = useParents();
 
 
   return (
@@ -23,7 +22,8 @@ export default function Home() {
         Histórico de Registros
       </Typography>
       <RegisterCardList
-        cardFn={() => router.push("/parents/home/viewRegister")}
+        cardFn={(id) => router.push(`/parents/home/viewRegister/${id}`)}
+        data={childRecords}
       />
     </PageContainer>
   )

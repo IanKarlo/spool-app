@@ -12,8 +12,8 @@ export default function Home() {
   function newRegister() {
     router.push("/parents/home/newRegister");
   }
-  function viewRegister() {
-    router.push("/parents/home/viewRegister");
+  function viewRegister(id: number) {
+    router.push(`/parents/home/viewRegister/${id}`);
   }
   function viewHistory() {
     router.push("/parents/home/viewHistory");
@@ -23,7 +23,7 @@ export default function Home() {
     <PageContainer isLoading={isLoading} error={error}>
       {user && <Header subtitle1='Resumo do' name={user?.name ?? ''} profileImage={`https://api.dicebear.com/9.x/adventurer/png?seed=${encodeURI(user?.name)}`} />}
       <BigCard color="blue" fontColor="white" fn={newRegister} />
-      <RegisterHistory data={childRecords} cardFn={viewRegister} historyFn={viewHistory}/>
+      <RegisterHistory data={childRecords} cardFn={viewRegister} historyFn={viewHistory}/> 
     </PageContainer>
   );
 }

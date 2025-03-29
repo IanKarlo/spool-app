@@ -7,10 +7,8 @@ import { useMemo } from "react";
 export default function ViewRegister() {
   const { id } = useLocalSearchParams();
 
-  if (!id) return null;
-
   const { educationistRecords, educationistChildren, user, isLoading, error } =
-    useEducators();
+  useEducators();
 
   const record = useMemo(
     () => educationistRecords?.find((record) => record.id === Number(id)),
@@ -21,6 +19,8 @@ export default function ViewRegister() {
     () => educationistChildren?.find((child) => child.id === record?.childId),
     [educationistChildren, record]
   );
+
+  if (!id) return null;
 
   if (!record || !child || !user)
     return <Typography>Ops! Parece que algo deu errado.</Typography>;
