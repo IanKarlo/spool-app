@@ -5,20 +5,23 @@ import type { Colors } from "@/themes";
 import RegisterCardList from "./RegisterCardList";
 interface RegisterHistoryProps {
   hideIcon?: boolean;
-  cardFn: () => void;
+  cardFn: (id: number) => void;
   historyFn?: () => void;
-  data?: getChildRecordResponse['data'];
+  data?: getChildRecordResponse["data"];
 }
 
 export function RegisterHistory({
   hideIcon,
   cardFn,
   historyFn,
-  data
+  data,
 }: RegisterHistoryProps) {
   return (
     <View style={{ gap: 16 }}>
-      <TouchableOpacity onPress={() => historyFn?.()} activeOpacity={hideIcon ? 1 : 0.2}>
+      <TouchableOpacity
+        onPress={() => historyFn?.()}
+        activeOpacity={hideIcon ? 1 : 0}
+      >
         <View
           style={{
             display: "flex",
@@ -27,11 +30,13 @@ export function RegisterHistory({
             alignContent: "center",
           }}
         >
-          <Typography style={{ fontSize: 22  }} color="text1">Histórico de Registros</Typography>
+          <Typography style={{ fontSize: 22 }} color="text1">
+            Histórico de Registros
+          </Typography>
           {!hideIcon && <Ionicons name="chevron-forward" size={20} />}
         </View>
       </TouchableOpacity>
-      <RegisterCardList data={data} cardFn={cardFn} cardLimit={4}/>
+      <RegisterCardList data={data} cardFn={cardFn} cardLimit={4} />
     </View>
   );
 }

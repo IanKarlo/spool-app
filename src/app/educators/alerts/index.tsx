@@ -4,9 +4,39 @@ import { router } from "expo-router";
 import Header from "@/components/molecules/Header";
 import { View } from "react-native";
 import { RegisterCard } from "@/components/organisms/RegisterCard";
+import { useEducators } from "@/contexts/EducatorsContext";
+import { useGetUnreadRecords, usePostRead } from "@/services/apiService";
+import { useMemo } from "react";
+import { roleMap } from "@/components/pages/ViewRegisterPage";
 
-function cardView() {
-  router.push("/educators/alerts/viewRegister");
+function formatAlertsByDay(data: any[]): { date: string; data: any[] }[] {
+  const groupedByDate: { [key: string]: number[] } = {};
+
+  data.forEach((record) => {
+    const createdAt = new Date(record.createdAt);
+    let dateString = createdAt.toLocaleDateString("pt-BR");
+
+    if (createdAt === today) {
+      dateString = "Hoje";
+    }
+
+    if (createdAt === yesterday) {
+      dateString = "Ontem";
+    }
+
+    if (!groupedByDate[dateString]) {
+      groupedByDate[dateString] = [];
+    }
+
+    groupedByDate[dateString].push(record);
+  });
+
+  return Object.keys(groupedByDate).map((date) => {
+    return {
+      date: date,
+      data: groupedByDate[date],
+    };
+  });
 }
 
 const today = new Date();
@@ -16,68 +46,73 @@ const yesterday = new Date(
   today.getDate() - 1
 );
 
-// fazer essa logica em um service e já puxar na pagina depois de fazer a request
-const alertsByDay = [
-  { date: today, data: [0, 1, 2] },
-  { date: yesterday, data: [0, 1] },
-  { date: new Date(2025, 3, 11), data: [0, 1, 2, 3] },
-];
-
-function makeCard(index: number, index2: number) {
-  return <RegisterCard fn={cardView} key={`${index}-${index2}`} />;
+function makeCard(
+  index: number,
+  index2: number,
+  data: any,
+  viewRegister: (id: number) => void
+) {
+  return (
+    <RegisterCard
+      fn={() => viewRegister(data.id)}
+      key={`${index}-${index2}`}
+      title={data.authorName}
+      subtitle={roleMap[data.authorRole]}
+      date={new Date(data.createdAt).toLocaleTimeString("pt-BR")}
+      bodyText={data.content}
+      tags={data.symptoms}
+    />
+  );
 }
 
-function makeDays(data: { date: Date; data: number[] }, index: number) {
-
-  if (data.date === today) {
-    return (
-      <View key={index} style={{ gap: 8 }}>
-        <Typography style={{ fontSize: 20 }}>Hoje</Typography>
-        <View style={{ gap: 12 }}>
-          {data.data.map((alert, index2) => makeCard(index, index2))}
-        </View>
-      </View>
-    );
-  }
-
-  if (data.date === yesterday) {
-    return (
-      <View key={index} style={{ gap: 8 }}>
-        <Typography style={{ fontSize: 20 }}>Ontem</Typography>
-        <View style={{ gap: 12 }}>
-          {data.data.map((alert, index2) => makeCard(index, index2))}
-        </View>
-      </View>
-    );
-  }
-
+function makeDays(
+  data: { date: string; data: any[] },
+  index: number,
+  viewRegister: (id: number) => void
+) {
   return (
     <View key={index} style={{ gap: 8 }}>
-      <Typography style={{ fontSize: 20 }}>{`${data.date
-        .getDay()
-        .toLocaleString("en-US", { minimumIntegerDigits: 2 })}/${(
-        data.date.getMonth() + 1
-      ).toLocaleString("en-US", {
-        minimumIntegerDigits: 2,
-      })}/${data.date.getFullYear()}`}</Typography>
+      <Typography style={{ fontSize: 20 }}>{data.date}</Typography>
       <View style={{ gap: 12 }}>
-        {data.data.map((alert, index2) => makeCard(index, index2))}
+        {data.data.map((alert, index2) =>
+          makeCard(index, index2, alert, viewRegister)
+        )}
       </View>
     </View>
   );
-
 }
 
 export default function Alerts() {
+  const { user } = useEducators();
+  const { mutate } = usePostRead();
+
+  if (!user) return null;
+
+  const { data, isLoading, error } = useGetUnreadRecords(user.id);
+
+  const alertsByDay = useMemo(() => {
+    if (!data) return [];
+
+    return formatAlertsByDay(data.data);
+  }, [data]);
+
+  function viewRegister(id: number) {
+    router.push(`/educators/home/viewRegister/${id}`);
+    // console.log("viewRegister", id);
+    // console.log("user.id", user?.id);
+    // console.log("user.role", user?.role);
+    // if (user) mutate({ recordId: id, userId: user.id, userRole: user.role });
+  }
+
   return (
-    <PageContainer>
+    <PageContainer isLoading={isLoading} error={error}>
       <Header
         name="Alertas"
         subtitle1="Seus"
         profileImage="https://github.com/diego3g.png"
       />
       <View style={{ gap: 12 }}>
-        {alertsByDay.map((data, index) => makeDays(data, index))}
+        {alertsByDay.map((data, index) => makeDays(data, index, viewRegister))}
       </View>
     </PageContainer>
   );

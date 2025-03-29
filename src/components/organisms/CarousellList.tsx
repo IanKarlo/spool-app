@@ -5,20 +5,28 @@ import { ScrollView, TouchableOpacity, View } from "react-native";
 import { ProfileCard } from "./ProfileCard";
 import { Ionicons } from "@expo/vector-icons";
 
+export type CarouselItens = {
+  id: number;
+  name: string;
+  info: string;
+};
+
 export function CarouselList({
-  fontColor = 'text1',
-  cardColor = 'darkBlue',
+  fontColor = "text1",
+  cardColor = "darkBlue",
   crFn,
   cardFn,
   title,
   marginSize = 24,
+  itens,
 }: {
   fontColor?: Colors;
   cardColor?: Colors;
   title?: string;
   crFn: () => void;
-  cardFn: () => void;
+  cardFn: (id: number) => void;
   marginSize?: number;
+  itens?: CarouselItens[];
 }) {
   return (
     <TouchableOpacity onPress={() => crFn()}>
@@ -39,7 +47,7 @@ export function CarouselList({
             alignItems: "center",
           }}
         >
-          <Typography color={fontColor} style={{ fontSize: 22, }}>
+          <Typography color={fontColor} style={{ fontSize: 22 }}>
             {title}
           </Typography>
           <Ionicons name="chevron-forward" size={20} color={fontColor} />
@@ -47,43 +55,26 @@ export function CarouselList({
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          style={{ display: "flex", flexDirection: "row", gap: 24, marginHorizontal: -marginSize }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 24,
+            marginHorizontal: -marginSize,
+          }}
         >
-          <View style={{ width: marginSize }}/>
-          {/* LISTA AQUI ABAIXO */}
-          <ProfileCard
-            fn={cardFn}
-            color={cardColor}
-            variation="small"
-            style={{ marginRight: 12 }}
-            info="Turma 1A"
-            name="Fulano de Tal"
-          />
-          <ProfileCard
-            fn={cardFn}
-            color={cardColor}
-            variation="small"
-            style={{ marginRight: 12 }}
-            info="Turma 1A"
-            name="Fulano de Tal"
-          />
-          <ProfileCard
-            fn={cardFn}
-            color={cardColor}
-            variation="small"
-            style={{ marginRight: 12 }}
-            info="Turma 1A"
-            name="Fulano de Tal"
-          />
-          <ProfileCard
-            fn={cardFn}
-            color={cardColor}
-            variation="small"
-            name="Fulano de Tal"
-            info="Turma 1A"
-          />
-          {/* LISTA AQUI ACIMA */}
-          <View style={{ width: marginSize }}/>
+          <View style={{ width: marginSize }} />
+          {itens?.map((item) => (
+            <ProfileCard
+              key={item.id}
+              color={cardColor}
+              style={{ marginRight: 12 }}
+              variation="small"
+              fn={() => cardFn(item.id)}
+              name={item.name}
+              info={item.info}
+            />
+          ))}
+          <View style={{ width: marginSize }} />
         </ScrollView>
       </View>
     </TouchableOpacity>

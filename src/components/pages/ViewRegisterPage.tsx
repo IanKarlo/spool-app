@@ -1,47 +1,81 @@
-import { PageContainer } from "@/components/atomics/PageContainer"
-import Header from "@/components/molecules/Header"
-import { View } from "react-native"
-import { Typography } from "@/components/atomics/Typography"
-import { Tag } from "@/components/molecules/Tag"
-import { useTheme } from "styled-components/native"
-import Profile from '@/components/atomics/Profile'
+import { PageContainer } from "@/components/atomics/PageContainer";
+import Header from "@/components/molecules/Header";
+import { View } from "react-native";
+import { Typography } from "@/components/atomics/Typography";
+import { Tag } from "@/components/molecules/Tag";
+import { useTheme } from "styled-components/native";
+import Profile from "@/components/atomics/Profile";
+
+export const roleMap: {
+  [key: string]: string;
+} = {
+  Therapist: "Terapeuta",
+  Educationist: "Educador",
+  Child: "Criança",
+};
 
 type ViewRegisterPageProps = {
-  type: 'parent' | 'educator' | 'therapist'
+  type: "parent" | "educator" | "therapist";
   child?: {
-    name: string
-    profileImage: string
-    subtitle: string
-  }
-}
+    name: string;
+    info: string;
+  };
+  currentUser: any;
+  record: getEducationistRecordResponse["data"][number];
+};
 
-export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps) {
-  const theme = useTheme()
+export default function ViewRegisterPage({
+  type,
+  child,
+  currentUser,
+  record,
+}: ViewRegisterPageProps) {
+  const theme = useTheme();
+
+  function formatDate(date: Date): string {
+    const dia = String(date.getDate()).padStart(2, "0");
+    const mes = String(date.getMonth() + 1).padStart(2, "0"); // mês começa em 0
+    const ano = date.getFullYear();
+
+    const hora = String(date.getHours()).padStart(2, "0");
+    const minuto = String(date.getMinutes()).padStart(2, "0");
+
+    return `${dia}/${mes}/${ano} às ${hora}h${minuto}`;
+  }
+
   return (
     <PageContainer>
       <Header
-        name="John Doe"
+        name={currentUser.name}
         profileImage="https://github.com/diego3g.png"
         headerType="goBack"
       />
       <View style={{ gap: 20 }}>
         <View style={{ display: "flex", flexDirection: "column" }}>
           <Typography
-            color='darkBlue'
+            color="darkBlue"
             style={{
               fontSize: 24,
               fontWeight: 700,
-              fontFamily: 'TTChocolates-Medium',
+              fontFamily: "TTChocolates-Medium",
             }}
           >
             Detalhes do Registro
           </Typography>
-          <Typography style={{ fontSize: 12, fontWeight: 400 }} color='text2'>
-            Feito em 12/12/2021 às 12h00
+          <Typography style={{ fontSize: 12, fontWeight: 400 }} color="text2">
+            {`Feito em ${formatDate(new Date(record.createdAt))}`}
           </Typography>
         </View>
         <View style={{ gap: 8 }}>
-          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Autor</Typography>
+          <Typography
+            style={{
+              fontSize: 20,
+              fontFamily: "TTChocolates-Medium",
+              fontWeight: 600,
+            }}
+          >
+            Autor
+          </Typography>
           <View
             style={{
               backgroundColor: theme.colors.lightBlue,
@@ -49,35 +83,69 @@ export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps)
               borderRadius: 8,
             }}
           >
-            <Typography color='text2'>
-              Bruna Silva (Professora)
-            </Typography>
+            <Typography color="text2">{`${record.authorName} ${
+              roleMap[record.authorRole]
+            }`}</Typography>
           </View>
         </View>
-        {child && type !== 'parent' && (
+        {child && type !== "parent" && (
           <View style={{ gap: 8 }}>
-            <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>{type === 'educator' ? 'Aluno' : 'Paciente'}</Typography>
-            <View
-            style={{
-              backgroundColor: theme.colors.lightBlue,
-              padding: 12,
-              borderRadius: 8,
-            }}
+            <Typography
+              style={{
+                fontSize: 20,
+                fontFamily: "TTChocolates-Medium",
+                fontWeight: 600,
+              }}
             >
-              <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <Profile uri={child.profileImage} color="blue" size={48} />
-                <View style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography color='text1' style={{ fontSize: 16, fontWeight: 600, fontFamily: 'TTChocolates-Medium' }}>
+              {type === "educator" ? "Aluno" : "Paciente"}
+            </Typography>
+            <View
+              style={{
+                backgroundColor: theme.colors.lightBlue,
+                padding: 12,
+                borderRadius: 8,
+              }}
+            >
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 12,
+                }}
+              >
+                <Profile
+                  uri={"https://github.com/diego3g.png"}
+                  color="blue"
+                  size={48}
+                />
+                <View style={{ display: "flex", flexDirection: "column" }}>
+                  <Typography
+                    color="text1"
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 600,
+                      fontFamily: "TTChocolates-Medium",
+                    }}
+                  >
                     {child.name}
                   </Typography>
-                  <Typography color='text2'>{child.subtitle}</Typography>
+                  <Typography color="text2">{child.info}</Typography>
                 </View>
               </View>
             </View>
           </View>
         )}
         <View style={{ gap: 8 }}>
-          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Sintomas</Typography>
+          <Typography
+            style={{
+              fontSize: 20,
+              fontFamily: "TTChocolates-Medium",
+              fontWeight: 600,
+            }}
+          >
+            Sintomas
+          </Typography>
           <View
             style={{
               display: "flex",
@@ -86,30 +154,15 @@ export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps)
               flexWrap: "wrap",
             }}
           >
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="active"
-            />
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="inactive"
-            />
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="active"
-            />
-            <Tag
-              icon="airplay"
-              color="blue"
-              label="Bom-humor"
-              variant="inactive"
-            />
+            {record.symptoms.map((symptom, index) => (
+              <Tag
+                key={index}
+                icon="airplay"
+                color="blue"
+                label={symptom}
+                variant="active"
+              />
+            ))}
             <Tag
               icon="airplay"
               color="blue"
@@ -119,7 +172,15 @@ export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps)
           </View>
         </View>
         <View style={{ gap: 8 }}>
-          <Typography style={{ fontSize: 20, fontFamily: 'TTChocolates-Medium', fontWeight: 600 }}>Descrição</Typography>
+          <Typography
+            style={{
+              fontSize: 20,
+              fontFamily: "TTChocolates-Medium",
+              fontWeight: 600,
+            }}
+          >
+            Descrição
+          </Typography>
           <View
             style={{
               backgroundColor: theme.colors.lightBlue,
@@ -129,25 +190,10 @@ export default function ViewRegisterPage({ type, child }: ViewRegisterPageProps)
               borderRadius: 8,
             }}
           >
-            <Typography color='text2'>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </Typography>
+            <Typography color="text2">{record.content}</Typography>
           </View>
         </View>
       </View>
     </PageContainer>
-  )
+  );
 }
