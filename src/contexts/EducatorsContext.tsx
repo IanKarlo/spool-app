@@ -1,5 +1,5 @@
 import {
-  getUserByToken,
+  useGetUserByToken,
   useGetEducationistChild,
   useGetEducationistRecord,
 } from "@/services/apiService";
@@ -20,7 +20,7 @@ export function EducatorsProvider({ children }: { children: React.ReactNode }) {
     data: getUserData,
     isLoading: isLoadingUser,
     error: errorUser,
-  } = getUserByToken("8cf7bd59");
+  } = useGetUserByToken("8cf7bd59");
 
   const {
     data: getEducationistChildData,

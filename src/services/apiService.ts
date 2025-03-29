@@ -312,7 +312,7 @@ export const usePostNotificationToken = () => {
   });
 };
 
-export const getUserByToken = (token: string) => {
+export const useGetUserByToken = (token: string) => {
   return useQuery({
     queryKey: ["getUserByToken", token],
     queryFn: async () => {

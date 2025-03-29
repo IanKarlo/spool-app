@@ -5,9 +5,10 @@ import { BigCard } from "@/components/organisms/BigCard";
 import { CarouselList } from "@/components/organisms/CarousellList";
 import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
-import { useGetChildRecord } from "@/services/apiService";
+import { useGetChildRecord, useGetUserByToken } from "@/services/apiService";
 export default function Home() {
-  const { data, error, isLoading } = useGetChildRecord(1, 1, 4);
+  const {data: user, isLoading: isLoadingUser, error: errorUser} = useGetUserByToken('58f8b9fe')
+  const { data: childRecord, error: errorChildRecord, isLoading: isLoadingChildRecord } = useGetChildRecord(1, 1, 4);
 
   function newRegister() {
     router.push("/parents/home/newRegister");
@@ -20,10 +21,10 @@ export default function Home() {
   }
 
   return (
-    <PageContainer isLoading={isLoading} error={error}>
-      <Header name="John Doe" profileImage="https://github.com/diego3g.png" />
+    <PageContainer isLoading={isLoadingUser || isLoadingChildRecord} error={errorUser || errorChildRecord}>
+      {user && <Header subtitle1='Resumo do' name={user?.data.name ?? ''} profileImage={`https://api.dicebear.com/9.x/adventurer/png?seed=${encodeURI(user?.data.name)}`} />}
       <BigCard color="blue" fontColor="white" fn={newRegister} />
-      <RegisterHistory data={data?.data} cardFn={viewRegister} historyFn={viewHistory}/>
+      <RegisterHistory data={childRecord?.data} cardFn={viewRegister} historyFn={viewHistory}/>
     </PageContainer>
   );
 }

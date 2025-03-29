@@ -6,6 +6,7 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import { usePathnameColor } from "@/hooks/usePathnameColor";
+import { useTheme } from 'styled-components'
 
 type headerType = "profile" | "withTitle" | "goBack";
 interface HeaderProps {
@@ -26,6 +27,10 @@ export default function Header({
   hiddenAvatar = false,
 }: HeaderProps) {
   const { tabColor } = usePathnameColor();
+  const theme = useTheme();
+  const color = theme.colors[tabColor as Colors].split('#')[1]
+
+  const profileImageAvatar = `https://ui-avatars.com/api/?size=64&background=${color}&color=fff&name=${encodeURI(name)}`
 
   switch (headerType) {
     case "profile":
@@ -40,7 +45,7 @@ export default function Header({
           <TouchableOpacity onPress={() => router.back()} style={{ alignSelf: "flex-start" }}>
             <Icon name="arrow-left" size={24} color="black" />
           </TouchableOpacity>
-          <Profile uri={profileImage} color={"darkBlue"} size={96} />
+          <Profile uri={profileImageAvatar} color={"darkBlue"} size={96} />
           <Typography
             style={{ fontSize: 28, fontFamily: 'TTChocolates-Medium' }}
             color={"darkBlue"}
@@ -69,7 +74,7 @@ export default function Header({
               {name}
             </Typography>
           </View>
-          {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
+          {!hiddenAvatar && <Profile uri={profileImageAvatar} color={tabColor} />}
         </View>
       );
     case "goBack":
@@ -84,7 +89,7 @@ export default function Header({
           <TouchableOpacity onPress={() => router.back()}>
             <Icon name="arrow-left" size={24} color="black" />
           </TouchableOpacity>
-          {!hiddenAvatar && <Profile uri={profileImage} color={tabColor} />}
+          {!hiddenAvatar && <Profile uri={profileImageAvatar} color={tabColor} />}
         </View>
       );
     default:
