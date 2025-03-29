@@ -3,14 +3,14 @@ import Header from "@/components/molecules/Header";
 import { ProfileCard } from "@/components/organisms/ProfileCard";
 import { Typography } from "@/components/atomics/Typography";
 import { router } from "expo-router";
-import { useEducators } from "@/contexts/EducatorsContext";
+import { useTherapist } from "@/contexts/TherapistContext";
 
 function profile(id: number) {
-  router.push(`/educators/home/studentProfile/${id}`);
+  router.push(`/therapist/home/patientProfile/${id}`);
 }
 
-export default function Students() {
-  const { educationistChildren, user, isLoading, error } = useEducators();
+export default function Home() {
+  const { therapistChildren, user, isLoading, error } = useTherapist();
   return (
     <PageContainer isLoading={isLoading} error={error}>
       {user && (
@@ -20,8 +20,8 @@ export default function Students() {
             profileImage="https://github.com/diego3g.png"
             headerType="goBack"
           />
-          <Typography style={{ fontSize: 18 }}>Alunos</Typography>
-          {educationistChildren?.map((child) => (
+          <Typography style={{ fontSize: 18 }}>Pacientes</Typography>
+          {therapistChildren?.map((child) => (
             <ProfileCard
               fn={() => profile(child.id)}
               color="blue"

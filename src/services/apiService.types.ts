@@ -9,7 +9,7 @@ type ChildRecord = {
   content: string;
   createdAt: string;
   symptoms: string[];
-}
+};
 
 interface getChildRecordResponse {
   msg: string;
@@ -101,7 +101,7 @@ interface getEducationistChildResponse {
     class: string;
     token: string;
   }[];
-} 
+}
 
 interface getChildTherapistResponse {
   msg: string;

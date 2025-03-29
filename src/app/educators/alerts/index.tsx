@@ -9,8 +9,10 @@ import { useGetUnreadRecords, usePostRead } from "@/services/apiService";
 import { useMemo } from "react";
 import { roleMap } from "@/components/pages/ViewRegisterPage";
 
-function formatAlertsByDay(data: any[]): { date: string; data: any[] }[] {
-  const groupedByDate: { [key: string]: number[] } = {};
+export function formatAlertsByDay(
+  data: getUnreadRecordsResponse["data"]
+): { date: string; data: getUnreadRecordsResponse["data"] }[] {
+  const groupedByDate: { [key: string]: getUnreadRecordsResponse["data"] } = {};
 
   data.forEach((record) => {
     const createdAt = new Date(record.createdAt);
@@ -49,7 +51,7 @@ const yesterday = new Date(
 function makeCard(
   index: number,
   index2: number,
-  data: any,
+  data: getUnreadRecordsResponse["data"][number],
   viewRegister: (id: number) => void
 ) {
   return (
@@ -66,7 +68,7 @@ function makeCard(
 }
 
 function makeDays(
-  data: { date: string; data: any[] },
+  data: { date: string; data: getUnreadRecordsResponse["data"] },
   index: number,
   viewRegister: (id: number) => void
 ) {
@@ -84,7 +86,7 @@ function makeDays(
 
 export default function Alerts() {
   const { user } = useEducators();
-  const { mutate } = usePostRead();
+  // const { mutate } = usePostRead();
 
   if (!user) return null;
 

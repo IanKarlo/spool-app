@@ -17,6 +17,8 @@ export default function ChildProfilePage({
   addRegister,
   viewRegisterHistory,
   childRecords,
+  isLoading,
+  error,
 }: ChildProfilePageProps) {
   function getAgeLabel(birthDateString: string): string {
     const birthDate = new Date(birthDateString);
@@ -35,11 +37,11 @@ export default function ChildProfilePage({
   }
 
   return (
-    <PageContainer>
+    <PageContainer isLoading={isLoading} error={error}>
       <Header
-        name={child.name}
-        subtitle1={child.class}
-        subtitle2={getAgeLabel(child.birthDate)}
+        name={child?.name}
+        subtitle1={child?.class}
+        subtitle2={getAgeLabel(child?.birthDate)}
         profileImage="https://github.com/diego3g.png"
         headerType="profile"
       />

@@ -22,6 +22,8 @@ type ViewRegisterPageProps = {
   };
   currentUser: any;
   record: getEducationistRecordResponse["data"][number];
+  isLoading?: boolean;
+  error?: Error | null;
 };
 
 export default function ViewRegisterPage({
@@ -29,6 +31,8 @@ export default function ViewRegisterPage({
   child,
   currentUser,
   record,
+  isLoading,
+  error,
 }: ViewRegisterPageProps) {
   const theme = useTheme();
 
@@ -44,7 +48,7 @@ export default function ViewRegisterPage({
   }
 
   return (
-    <PageContainer>
+    <PageContainer isLoading={isLoading} error={error}>
       <Header
         name={currentUser.name}
         profileImage="https://github.com/diego3g.png"

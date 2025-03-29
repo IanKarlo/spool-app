@@ -37,7 +37,7 @@ export const useGetChildRecord = (
 };
 
 export const useGetChildTherapistRecord = (
-  childId: string,
+  childId: number,
   therapistId: number
 ) => {
   return useQuery({
@@ -60,7 +60,7 @@ export const useGetChildTherapistRecord = (
 };
 
 export const useGetChildEducationistRecord = (
-  childId: string,
+  childId: number,
   educationistId: number
 ) => {
   return useQuery({

@@ -1,6 +1,6 @@
 import { Typography } from "@/components/atomics/Typography";
 import ViewRegisterPage from "@/components/pages/ViewRegisterPage";
-import { useEducators } from "@/contexts/EducatorsContext";
+import { useTherapist } from "@/contexts/TherapistContext";
 import { useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
 
@@ -9,17 +9,17 @@ export default function ViewRegister() {
 
   if (!id) return null;
 
-  const { educationistRecords, educationistChildren, user, isLoading, error } =
-    useEducators();
+  const { therapistChildren, therapistRecords, user, isLoading, error } =
+    useTherapist();
 
   const record = useMemo(
-    () => educationistRecords?.find((record) => record.id === Number(id)),
-    [educationistRecords, id]
+    () => therapistRecords?.find((record) => record.id === Number(id)),
+    [therapistRecords, id]
   );
 
   const child = useMemo(
-    () => educationistChildren?.find((child) => child.id === record?.childId),
-    [educationistChildren, record]
+    () => therapistChildren?.find((child) => child.id === record?.childId),
+    [therapistChildren, record]
   );
 
   if (!record || !child || !user)
@@ -27,12 +27,12 @@ export default function ViewRegister() {
 
   return (
     <ViewRegisterPage
-      type="educator"
-      currentUser={user}
+      type="therapist"
       child={{
         name: child.name,
         info: child.class,
       }}
+      currentUser={user}
       record={record}
       isLoading={isLoading}
       error={error}
