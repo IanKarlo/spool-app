@@ -1,7 +1,7 @@
 import {
-  getUserByToken,
   useGetTherapistChild,
   useGetTherapistRecord,
+  useGetUserByToken,
 } from "@/services/apiService";
 import React, { createContext, useContext, useMemo } from "react";
 
@@ -20,7 +20,7 @@ export function TherapistProvider({ children }: { children: React.ReactNode }) {
     data: getUserData,
     isLoading: isLoadingUser,
     error: errorUser,
-  } = getUserByToken("392b97b6");
+  } = useGetUserByToken("392b97b6");
 
   const {
     data: getTherapistChildData,
