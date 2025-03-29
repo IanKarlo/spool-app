@@ -7,7 +7,7 @@ import { RegisterHistory } from "@/components/organisms/History";
 import { router } from "expo-router";
 import { useGetChildRecord } from "@/services/apiService";
 export default function Home() {
-  const { data, error, isLoading } = useGetChildRecord(1);
+  const { data, error, isLoading } = useGetChildRecord(1, 1, 4);
 
   function newRegister() {
     router.push("/parents/home/newRegister");
