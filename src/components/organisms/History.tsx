@@ -7,7 +7,7 @@ interface RegisterHistoryProps {
   hideIcon?: boolean;
   cardFn: (id: number) => void;
   historyFn?: () => void;
-  data?: getChildRecordResponse["data"];
+  data?: ChildRecord[];
 }
 
 export function RegisterHistory({

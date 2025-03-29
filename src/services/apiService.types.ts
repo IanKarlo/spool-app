@@ -1,79 +1,49 @@
 type UserRole = "Educationist" | "Therapist" | "Child";
 
+type ChildRecord = {
+  id: number;
+  childId: number;
+  authorId: number;
+  authorRole: UserRole;
+  authorName: string;
+  content: string;
+  createdAt: string;
+  symptoms: string[];
+}
+
 interface getChildRecordResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    authorName: string;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface getChildTherapistRecordResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface getChildEducationistRecord {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface getEducationistRecordResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface getTherapistRecordResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface postReadBody {
@@ -98,16 +68,7 @@ interface postRecordResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    authorName: string;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  };
+  data: ChildRecord;
 }
 
 interface getTherapistChildResponse {
@@ -204,16 +165,7 @@ interface getUnreadRecordsResponse {
   msg: string;
   msgCode: string;
   code: number;
-  data: {
-    id: number;
-    childId: number;
-    authorId: number;
-    authorRole: UserRole;
-    authorName: string;
-    content: string;
-    createdAt: string;
-    symptoms: string[];
-  }[];
+  data: ChildRecord[];
 }
 
 interface postNotificationTokenResponse {

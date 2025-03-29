@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://192.168.100.2:3003/api", // Replace with your API base URL
+  baseURL: "http://localhost:3000/api", // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests
   headers: {
     "Content-Type": "application/json",

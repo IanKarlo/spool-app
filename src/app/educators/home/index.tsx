@@ -8,6 +8,7 @@ import {
 import { RegisterHistory } from "@/components/organisms/History";
 import { useEducators } from "@/contexts/EducatorsContext";
 import { router } from "expo-router";
+import React from 'react'
 import { useMemo } from "react";
 
 export default function Home() {

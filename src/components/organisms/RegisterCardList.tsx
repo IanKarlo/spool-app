@@ -1,11 +1,10 @@
 import { View } from "react-native";
 import { RegisterCard } from "./RegisterCard";
 import { formatToBrazilianDate, mapRoleToPortuguese } from "@/utils/string";
-
 interface CardListProps {
   cardLimit?: number;
   cardFn: (id: number) => void;
-  data?: getChildRecordResponse["data"];
+  data?: ChildRecord[];
 }
 
 export function CardList({ cardLimit, cardFn, data }: CardListProps) {
