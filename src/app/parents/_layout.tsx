@@ -1,12 +1,13 @@
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import NavBar from '@/components/molecules/NavBar'
-
+import { ParentsProvider } from '@/contexts/ParentsContext';
 export default function TabLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
+    <ParentsProvider>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
       }}
       tabBar={({ state, descriptors, navigation, insets }) => (
         <NavBar state={state} descriptors={descriptors} navigation={navigation} insets={insets} />
@@ -37,8 +38,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'pulse-sharp' : 'pulse-outline'} color={color} size={24} />
           ),
-        }}
-      />
-    </Tabs>
+          }}
+        />
+      </Tabs>
+    </ParentsProvider>
   );
 }

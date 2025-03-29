@@ -1,7 +1,8 @@
-import { useGetChildRecord } from "@/services/apiService";
+import { useGetChildRecord, useGetUserByToken } from "@/services/apiService";
 import React, { createContext, useContext, useMemo } from "react";
 
 type ParentsContextType = {
+  user: getUserResponse["data"] | undefined;
   childRecords: any[] | undefined;
   isLoading: boolean;
   error: Error | null;
@@ -11,9 +12,15 @@ const ParentsContext = createContext<ParentsContextType | undefined>(undefined);
 
 export function ParentsProvider({ children }: { children: React.ReactNode }) {
   const {
+    data: getUserData,
+    isLoading: isLoadingUser,
+    error: errorUser,
+  } =  useGetUserByToken("f57773d3");
+
+  const {
     data: getChildRecordData,
-    isLoading,
-    error,
+    isLoading: isLoadingChildRecord,
+    error: errorChildRecord,
   } = useGetChildRecord(1); // You'll want to make this ID dynamic based on the actual child ID
 
   const childRecords = useMemo(
@@ -21,9 +28,22 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
     [getChildRecordData]
   );
 
+  const user = useMemo(() => getUserData && getUserData.data, [getUserData]);
+
+  const isLoading = useMemo(
+    () => isLoadingUser || isLoadingChildRecord,
+    [isLoadingUser, isLoadingChildRecord]
+  );
+
+  const error = useMemo(
+    () => errorUser || errorChildRecord,
+    [errorUser, errorChildRecord]
+  );
+
   return (
     <ParentsContext.Provider
       value={{
+        user,
         childRecords,
         isLoading,
         error,
