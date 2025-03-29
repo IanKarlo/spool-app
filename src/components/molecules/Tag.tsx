@@ -92,7 +92,7 @@ export function Tag({
         <Typography
           color={styles.textColor as Colors}
           style={{
-            fontSize: 12,
+            fontSize: 11,
             alignSelf: "center",
             textAlign: "center",
             textAlignVertical: "center",
