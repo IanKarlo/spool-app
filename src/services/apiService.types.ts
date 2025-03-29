@@ -9,6 +9,7 @@ interface getChildRecordResponse {
     childId: number;
     authorId: number;
     authorRole: UserRole;
+    authorName: string;
     content: string;
     createdAt: string;
     symptoms: string[];

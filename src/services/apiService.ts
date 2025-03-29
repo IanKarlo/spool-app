@@ -17,7 +17,7 @@ export const useGetChildRecord = (childId: number, page?: number, limit?: number
         const params = new URLSearchParams();
         if (page !== undefined) params.append('page', page.toString());
         if (limit !== undefined) params.append('limit', limit.toString());
-        
+
         const response = await apiClient.get<getChildRecordResponse>(
           `/record/child/${childId}${params.toString() ? `?${params.toString()}` : ''}`
         );
