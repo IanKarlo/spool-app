@@ -1,6 +1,6 @@
 import { PageContainer } from "@/components/atomics/PageContainer";
 import { Typography } from "@/components/atomics/Typography";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import Header from "@/components/molecules/Header";
 import { View } from "react-native";
 import { RegisterCard } from "@/components/organisms/RegisterCard";
@@ -73,7 +73,7 @@ export default function Alerts() {
     <PageContainer>
       <Header
         name="Alertas"
-        subtitle1="Seus alertas"
+        subtitle1="Seus"
         profileImage="https://github.com/diego3g.png"
       />
       <View style={{ gap: 12 }}>

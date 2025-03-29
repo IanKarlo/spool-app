@@ -9,13 +9,17 @@ const apiClient = axios.create({
   },
 });
 
-export const useGetChildRecord = (childId: number) => {
+export const useGetChildRecord = (childId: number, page?: number, limit?: number) => {
   return useQuery({
-    queryKey: ['getChildRecord', childId],
+    queryKey: ['getChildRecord', childId, page, limit],
     queryFn: async () => {
       try {
+        const params = new URLSearchParams();
+        if (page !== undefined) params.append('page', page.toString());
+        if (limit !== undefined) params.append('limit', limit.toString());
+        
         const response = await apiClient.get<getChildRecordResponse>(
-          `/record/child/${childId}`
+          `/record/child/${childId}${params.toString() ? `?${params.toString()}` : ''}`
         );
         return response.data;
       } catch (error) {
@@ -96,9 +100,16 @@ export const useGetTherapistRecord = (therapistId: number) => {
 
 export const usePostRecord = () => {
   return useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data:{
+      childId: number;
+      authorId: number;
+      authorRole: string;
+      authorName: string;
+      symptoms: number[];
+      content: string;
+    }) => {
       try {
-        const response = await apiClient.post('/record', data);
+        const response = await apiClient.post<postRecordResponse>('/record', data);
         return response.data;
       } catch (error) {
         console.error("Erro na API POST Registro:", error);
@@ -113,8 +124,8 @@ export const useGetChildEducationist = (childId: number) => {
     queryKey: ['getChildEducationist', childId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(
-          `/child/${childId}/educationist`
+        const response = await apiClient.get<getChildEducationistResponse>(
+          `/educationist/${childId}`
         );
         return response.data;
       } catch (error) {
@@ -130,7 +141,9 @@ export const useGetChildTherapist = (childId: number) => {
     queryKey: ['getChildTherapist', childId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(`/child/${childId}/therapist`);
+        const response = await apiClient.get<getChildTherapistResponse>(
+          `/therapist/${childId}`
+        );
         return response.data;
       } catch (error) {
         console.error("Erro na API GET Terapeuta da Criança:", error);
@@ -145,7 +158,9 @@ export const useGetReadRecord = (recordId: number) => {
     queryKey: ['getReadRecord', recordId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(`/read/${recordId}`);
+        const response = await apiClient.get<getReadRecordResponse>(
+          `/read/${recordId}`
+        );
         return response.data;
       } catch (error) {
         console.error("Erro na API GET Registro Lido:", error);
@@ -159,25 +174,10 @@ export const usePostRead = () => {
   return useMutation({
     mutationFn: async (data: postReadBody) => {
       try {
-        const response = await apiClient.post('/read', data);
+        const response = await apiClient.post<postReadRecordResponse>('/read', data);
         return response.data;
       } catch (error) {
         console.error("Erro na API POST Leitura:", error);
-        throw error;
-      }
-    },
-  });
-};
-
-export const useGetSymptoms = () => {
-  return useQuery({
-    queryKey: ['getSymptoms'],
-    queryFn: async () => {
-      try {
-        const response = await apiClient.get('/symptoms');
-        return response.data;
-      } catch (error) {
-        console.error("Erro na API GET Sintomas:", error);
         throw error;
       }
     },
@@ -189,8 +189,8 @@ export const useGetEducationistChild = (educationistId: number) => {
     queryKey: ['getEducationistChild', educationistId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(
-          `/educationist/${educationistId}/child`
+        const response = await apiClient.get<getEducationistChildResponse>(
+          `/child/educationist/${educationistId}`
         );
         return response.data;
       } catch (error) {
@@ -206,8 +206,8 @@ export const useGetTherapistChild = (therapistId: number) => {
     queryKey: ['getTherapistChild', therapistId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(
-          `/therapist/${therapistId}/child`
+        const response = await apiClient.get<getTherapistChildResponse>(
+          `/child/therapist/${therapistId}`
         );
         return response.data;
       } catch (error) {
@@ -220,9 +220,9 @@ export const useGetTherapistChild = (therapistId: number) => {
 
 export const usePostTherapist = () => {
   return useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data: postTherapistBody) => {
       try {
-        const response = await apiClient.post('/therapist', data);
+        const response = await apiClient.post<postTherapistResponse>('/therapist', data);
         return response.data;
       } catch (error) {
         console.error("Erro na API POST Terapeuta:", error);
@@ -237,10 +237,43 @@ export const useGetUnreadRecords = (userId: number) => {
     queryKey: ['getUnreadRecords', userId],
     queryFn: async () => {
       try {
-        const response = await apiClient.get(`/alerts/${userId}`);
+        const response = await apiClient.get<getUnreadRecordsResponse>(`/alerts/${userId}`);
         return response.data;
       } catch (error) {
         console.error("Erro na API GET Registros não lidos:", error);
+        throw error;
+      }
+    },
+  });
+};
+
+export const usePostNotificationToken = () => {
+  return useMutation({
+    mutationFn: async (data: {
+      userId: number;
+      deviceToken: string;
+      userRole: string;
+    }) => {
+      try {
+        const response = await apiClient.post<postNotificationTokenResponse>('/notification/device-token', data);
+        return response.data;
+      } catch (error) {
+        console.error("Erro na API POST Token de Notificação:", error);
+        throw error;
+      }
+    },
+  });
+};
+
+export const useGetUser = (userId: string) => {
+  return useQuery({
+    queryKey: ['getUser', userId],
+    queryFn: async () => {
+      try {
+        const response = await apiClient.get<getUserResponse>(`/user/${userId}`);
+        return response.data;
+      } catch (error) {
+        console.error("Erro na API GET Usuário:", error);
         throw error;
       }
     },
