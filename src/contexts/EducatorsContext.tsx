@@ -7,7 +7,7 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 
 type EducatorsContextType = {
   user: getUserResponse["data"] | undefined;
-  educationistChildren: any[] | undefined;
+  educationistChildren: getEducationistChildResponse["data"] | undefined;
   educationistRecords: getEducationistRecordResponse["data"] | undefined;
   isLoading: boolean;
   error: Error | null;
