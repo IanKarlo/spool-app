@@ -10,31 +10,34 @@ const SpoolLogo = require('../../assets/images/spool-blue.png')
 
 export default function Index() {
   const [token, setToken] = useState('')
+  const [submitted, setSubmitted] = useState(false)
   const { setUserToken, user, isLoading, error, resetUser } = useUser()
 
   const onSubmit = (token: string) => {
+    setSubmitted(true)
     setUserToken(token)
   }
 
-  console.log('user', user)
-  console.log('error', error)
-  console.log('isLoading', isLoading)
-
   useEffect(() => {
-    if (user) {
-      switch (user.role) {
-        case 'Child':
-          router.push('./parents')
-        break
-      case 'Educationist':
-        router.push('./educators')
-        break
-      case 'Therapist':
-          router.push('./therapist')
-          break
+    if (submitted && !isLoading) {
+      setSubmitted(false)
+      if (user) {
+        switch (user.role) {
+          case 'Child':
+            router.push('./parents')
+            break
+          case 'Educationist':
+            router.push('./educators')
+            break
+          case 'Therapist':
+            router.push('./therapist')
+            break
+        }
+      } else {
+        Alert.alert("Token inválido", "Por favor, insira um token válido", [{ text: 'OK', onPress: () => setToken('') }])
       }
     }
-  }, [user])
+  }, [submitted, user, isLoading])
 
   useEffect(() => {
     if (error) {

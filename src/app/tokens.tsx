@@ -22,7 +22,7 @@ export default function Tokens() {
         router.replace('./educators');
         break;
       case 'Terapeutas':
-        router.replace('./therapists');
+        router.replace('./therapist');
         break;
     }
   }
