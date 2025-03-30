@@ -37,8 +37,8 @@ export default function Teaching() {
   function viewHistory() {
     router.push("/parents/teaching/viewHistory");
   }
-  function viewRegister() {
-    router.push("/parents/teaching/viewRegister");
+  function viewRegister(id: number) {
+    router.push(`/parents/teaching/viewRegister/${id}`);
   }
 
   return (
