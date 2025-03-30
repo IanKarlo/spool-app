@@ -4,6 +4,7 @@ import { createContext, useContext, useMemo, useState } from "react";
 
 type UserContextType = {
   user: getUserResponse["data"] | undefined;
+  userId: number | null;
   isLoading: boolean;
   error: Error | null;
   setUserToken: (token: string) => void;
@@ -26,6 +27,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo(
     () => ({
       user,
+      userId: user?.id ?? null,
       isLoading,
       error,
       setUserToken,

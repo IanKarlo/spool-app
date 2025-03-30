@@ -17,19 +17,19 @@ type EducatorsContextType = {
 const EducatorsContext = createContext<EducatorsContextType | undefined>(undefined);
 
 export function EducatorsProvider({ children }: { children: React.ReactNode }) {
-  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
+  const { user, userId, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getEducationistChildData,
     isLoading: isLoadingEducationistChild,
     error: errorEducationistChild,
-  } = useGetEducationistChild(1);
+  } = useGetEducationistChild(userId);
 
   const {
     data: getEducationistRecordData,
     isLoading: isLoadingEducationistRecord,
     error: errorEducationistRecord,
-  } = useGetEducationistRecord(1);
+  } = useGetEducationistRecord(userId);
 
   const educationistChildren = useMemo(
     () => getEducationistChildData?.data,

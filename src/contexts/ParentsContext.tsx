@@ -14,19 +14,19 @@ type ParentsContextType = {
 const ParentsContext = createContext<ParentsContextType | undefined>(undefined);
 
 export function ParentsProvider({ children }: { children: React.ReactNode }) {
-  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
+  const { user, userId, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getChildRecordData,
     isLoading: isLoadingChildRecord,
     error: errorChildRecord,
-  } = useGetChildRecord(1); // You'll want to make this ID dynamic based on the actual child ID
+  } = useGetChildRecord(userId);
 
   const {
     data: childEducationistData,
     error: errorChildEducationist,
     isLoading: isLoadingChildEducationist,
-  } = useGetChildEducationist(1);
+  } = useGetChildEducationist(userId);
 
   const childRecords = useMemo(
     () => getChildRecordData?.data,

@@ -17,19 +17,19 @@ type TherapistContextType = {
 const UserContext = createContext<TherapistContextType | undefined>(undefined);
 
 export function TherapistProvider({ children }: { children: React.ReactNode }) {
-  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
+  const { user, userId, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getTherapistChildData,
     isLoading: isLoadingTherapistChild,
     error: errorTherapistChild,
-  } = useGetTherapistChild(1);
+  } = useGetTherapistChild(userId);
 
   const {
     data: getTherapistRecordData,
     isLoading: isLoadingTherapistRecord,
     error: errorTherapistRecord,
-  } = useGetTherapistRecord(1);
+  } = useGetTherapistRecord(userId);
 
   const therapistChildren = useMemo(
     () => getTherapistChildData?.data,

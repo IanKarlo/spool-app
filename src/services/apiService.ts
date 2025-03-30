@@ -11,7 +11,7 @@ const apiClient = axios.create({
 });
 
 export const useGetChildRecord = (
-  childId: number,
+  childId: number | null,
   page?: number,
   limit?: number
 ) => {
@@ -33,12 +33,13 @@ export const useGetChildRecord = (
         throw error;
       }
     },
+    enabled: !!childId,
   });
 };
 
 export const useGetChildTherapistRecord = (
-  childId: number,
-  therapistId: number
+  childId: number | null,
+  therapistId: number | null
 ) => {
   return useQuery({
     queryKey: ["getChildTherapistRecord", childId, therapistId],
@@ -56,12 +57,13 @@ export const useGetChildTherapistRecord = (
         throw error;
       }
     },
+    enabled: !!childId && !!therapistId,
   });
 };
 
 export const useGetChildEducationistRecord = (
-  childId: number,
-  educationistId: number
+  childId: number | null,
+  educationistId: number | null
 ) => {
   return useQuery({
     queryKey: ["getChildEducationistRecord", childId, educationistId],
@@ -79,10 +81,11 @@ export const useGetChildEducationistRecord = (
         throw error;
       }
     },
+    enabled: !!childId && !!educationistId,
   });
 };
 
-export const useGetEducationistRecord = (educationistId: number) => {
+export const useGetEducationistRecord = (educationistId: number | null) => {
   return useQuery({
     queryKey: ["getEducationistRecord", educationistId],
     queryFn: async () => {
@@ -96,10 +99,11 @@ export const useGetEducationistRecord = (educationistId: number) => {
         throw error;
       }
     },
+    enabled: !!educationistId,
   });
 };
 
-export const useGetTherapistRecord = (therapistId: number) => {
+export const useGetTherapistRecord = (therapistId: number | null) => {
   return useQuery({
     queryKey: ["getTherapistRecord", therapistId],
     queryFn: async () => {
@@ -113,6 +117,7 @@ export const useGetTherapistRecord = (therapistId: number) => {
         throw error;
       }
     },
+    enabled: !!therapistId,
   });
 };
 
@@ -140,7 +145,7 @@ export const usePostRecord = () => {
   });
 };
 
-export const useGetChildEducationist = (childId: number) => {
+export const useGetChildEducationist = (childId: number | null) => {
   return useQuery({
     queryKey: ["getChildEducationist", childId],
     queryFn: async () => {
@@ -154,10 +159,11 @@ export const useGetChildEducationist = (childId: number) => {
         throw error;
       }
     },
+    enabled: !!childId,
   });
 };
 
-export const useGetChildTherapist = (childId: number) => {
+export const useGetChildTherapist = (childId: number | null) => {
   return useQuery({
     queryKey: ["getChildTherapist", childId],
     queryFn: async () => {
@@ -171,10 +177,11 @@ export const useGetChildTherapist = (childId: number) => {
         throw error;
       }
     },
+    enabled: !!childId,
   });
 };
 
-export const useGetReadRecord = (recordId: number) => {
+export const useGetReadRecord = (recordId: number | null) => {
   return useQuery({
     queryKey: ["getReadRecord", recordId],
     queryFn: async () => {
@@ -188,6 +195,7 @@ export const useGetReadRecord = (recordId: number) => {
         throw error;
       }
     },
+    enabled: !!recordId,
   });
 };
 
@@ -223,7 +231,7 @@ export const useGetSymptoms = () => {
   });
 };
 
-export const useGetEducationistChild = (educationistId: number) => {
+export const useGetEducationistChild = (educationistId: number | null) => {
   return useQuery({
     queryKey: ["getEducationistChild", educationistId],
     queryFn: async () => {
@@ -237,10 +245,11 @@ export const useGetEducationistChild = (educationistId: number) => {
         throw error;
       }
     },
+    enabled: !!educationistId
   });
 };
 
-export const useGetTherapistChild = (therapistId: number) => {
+export const useGetTherapistChild = (therapistId: number | null) => {
   return useQuery({
     queryKey: ["getTherapistChild", therapistId],
     queryFn: async () => {
@@ -254,6 +263,7 @@ export const useGetTherapistChild = (therapistId: number) => {
         throw error;
       }
     },
+    enabled: !!therapistId,
   });
 };
 
@@ -274,7 +284,7 @@ export const usePostTherapist = () => {
   });
 };
 
-export const useGetUnreadRecords = (userId: number) => {
+export const useGetUnreadRecords = (userId: number | null) => {
   return useQuery({
     queryKey: ["getUnreadRecords", userId],
     queryFn: async () => {
@@ -288,6 +298,7 @@ export const useGetUnreadRecords = (userId: number) => {
         throw error;
       }
     },
+    enabled: !!userId,
   });
 };
 
