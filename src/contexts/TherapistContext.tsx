@@ -1,9 +1,10 @@
+import { useUser } from '@/contexts/UserContext'
 import {
   useGetTherapistChild,
   useGetTherapistRecord,
-  useGetUserByToken,
 } from "@/services/apiService";
-import React, { createContext, useContext, useMemo } from "react";
+import type React from "react";
+import { createContext, useContext, useMemo } from "react";
 
 type TherapistContextType = {
   user: getUserResponse["data"] | undefined;
@@ -16,11 +17,7 @@ type TherapistContextType = {
 const UserContext = createContext<TherapistContextType | undefined>(undefined);
 
 export function TherapistProvider({ children }: { children: React.ReactNode }) {
-  const {
-    data: getUserData,
-    isLoading: isLoadingUser,
-    error: errorUser,
-  } = useGetUserByToken("392b97b6");
+  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getTherapistChildData,
@@ -34,13 +31,12 @@ export function TherapistProvider({ children }: { children: React.ReactNode }) {
     error: errorTherapistRecord,
   } = useGetTherapistRecord(1);
 
-  const user = useMemo(() => getUserData && getUserData.data, [getUserData]);
   const therapistChildren = useMemo(
-    () => getTherapistChildData && getTherapistChildData.data,
+    () => getTherapistChildData?.data,
     [getTherapistChildData]
   );
   const therapistRecords = useMemo(
-    () => getTherapistRecordData && getTherapistRecordData.data,
+    () => getTherapistRecordData?.data,
     [getTherapistRecordData]
   );
 

@@ -308,11 +308,11 @@ export const usePostNotificationToken = () => {
         console.error("Erro na API POST Token de Notificação:", error);
         throw error;
       }
-    },
+      },
   });
 };
 
-export const useGetUserByToken = (token: string) => {
+export const useGetUserByToken = (token: string | null) => {
   return useQuery({
     queryKey: ["getUserByToken", token],
     queryFn: async () => {
@@ -324,5 +324,6 @@ export const useGetUserByToken = (token: string) => {
         throw error;
       }
     },
+    enabled: !!token,
   });
 };

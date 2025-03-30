@@ -1,5 +1,7 @@
 import { useGetChildEducationist, useGetChildRecord, useGetUserByToken } from "@/services/apiService";
-import React, { createContext, useContext, useMemo } from "react";
+import type React from "react";
+import { createContext, useContext, useMemo } from "react";
+import { useUser } from "./UserContext";
 
 type ParentsContextType = {
   user: getUserResponse["data"] | undefined;
@@ -12,11 +14,7 @@ type ParentsContextType = {
 const ParentsContext = createContext<ParentsContextType | undefined>(undefined);
 
 export function ParentsProvider({ children }: { children: React.ReactNode }) {
-  const {
-    data: getUserData,
-    isLoading: isLoadingUser,
-    error: errorUser,
-  } =  useGetUserByToken("f57773d3");
+  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getChildRecordData,
@@ -31,16 +29,14 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
   } = useGetChildEducationist(1);
 
   const childRecords = useMemo(
-    () => getChildRecordData && getChildRecordData.data,
+    () => getChildRecordData?.data,
     [getChildRecordData]
   );
 
   const childEducationist = useMemo(
-    () => childEducationistData && childEducationistData.data,
+    () => childEducationistData?.data,
     [childEducationistData]
   );
-
-  const user = useMemo(() => getUserData && getUserData.data, [getUserData]);
 
   const isLoading = useMemo(
     () => isLoadingUser || isLoadingChildRecord || isLoadingChildEducationist,

@@ -1,9 +1,10 @@
 import {
-  useGetUserByToken,
   useGetEducationistChild,
   useGetEducationistRecord,
 } from "@/services/apiService";
-import React, { createContext, useContext, useMemo, useState } from "react";
+import type React from "react";
+import { createContext, useContext, useMemo } from "react";
+import { useUser } from "./UserContext";
 
 type EducatorsContextType = {
   user: getUserResponse["data"] | undefined;
@@ -13,14 +14,10 @@ type EducatorsContextType = {
   error: Error | null;
 };
 
-const UserContext = createContext<EducatorsContextType | undefined>(undefined);
+const EducatorsContext = createContext<EducatorsContextType | undefined>(undefined);
 
 export function EducatorsProvider({ children }: { children: React.ReactNode }) {
-  const {
-    data: getUserData,
-    isLoading: isLoadingUser,
-    error: errorUser,
-  } = useGetUserByToken("8cf7bd59");
+  const { user, isLoading: isLoadingUser, error: errorUser } = useUser();
 
   const {
     data: getEducationistChildData,
@@ -34,13 +31,12 @@ export function EducatorsProvider({ children }: { children: React.ReactNode }) {
     error: errorEducationistRecord,
   } = useGetEducationistRecord(1);
 
-  const user = useMemo(() => getUserData && getUserData.data, [getUserData]);
   const educationistChildren = useMemo(
-    () => getEducationistChildData && getEducationistChildData.data,
+    () => getEducationistChildData?.data,
     [getEducationistChildData]
   );
   const educationistRecords = useMemo(
-    () => getEducationistRecordData && getEducationistRecordData.data,
+    () => getEducationistRecordData?.data,
     [getEducationistRecordData]
   );
 
@@ -57,7 +53,7 @@ export function EducatorsProvider({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <UserContext.Provider
+    <EducatorsContext.Provider
       value={{
         user,
         educationistChildren,
@@ -67,12 +63,12 @@ export function EducatorsProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </UserContext.Provider>
+    </EducatorsContext.Provider>
   );
 }
 
 export function useEducators() {
-  const context = useContext(UserContext);
+  const context = useContext(EducatorsContext);
   if (!context) {
     throw new Error("useEducators must be used within a EducatorsProvider");
   }

@@ -19,7 +19,7 @@ interface ButtonProps extends Omit<PressableProps, "style"> {
 
 export function Button({
   variant = "filled",
-  color = "pink",
+  color = "blue",
   text,
   style,
   textWeight = "normal",
