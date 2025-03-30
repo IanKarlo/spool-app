@@ -21,6 +21,13 @@ export default function Teaching() {
     return { professors, caretakers };
   }, [childEducationist]);
 
+  const { educationistsRecords } = useMemo(() => {
+    if (!childRecords) return { educationistsRecords: [] };
+    const educationistsRecords = childRecords.filter(
+      (record) => record.authorRole === 'Educationist'
+    );
+    return { educationistsRecords };
+  }, [childRecords]);
 
   function viewTeacher() {
     router.push("/parents/teaching/viewTeacher");
@@ -46,7 +53,7 @@ export default function Teaching() {
       <Header name={user?.name ?? ''} profileImage={`https://api.dicebear.com/9.x/adventurer/png?seed=${encodeURI(user?.name ?? '')}`} subtitle1="Ensino do"/>
       <CarouselList itens={professors} crFn={teacherList} title='Professores' cardFn={viewTeacher}  />
       <CarouselList itens={caretakers} crFn={carerList} title='Cuidadores' cardFn={viewCarer}  />
-      <RegisterHistory data={childRecords} cardFn={viewRegister} historyFn={viewHistory} />
+      <RegisterHistory data={educationistsRecords} cardFn={viewRegister} historyFn={viewHistory} />
     </PageContainer>
   );
 }
