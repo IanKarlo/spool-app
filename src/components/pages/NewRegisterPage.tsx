@@ -10,13 +10,13 @@ import { useState } from "react";
 import { View } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { usePostRecord } from "@/services/apiService";
-import { useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from "@tanstack/react-query";
 
 type FormValues = {
   authorId: number;
   authorRole: string;
   authorName: string;
-  childId: number | null;
+  childId: number;
   symptoms: string[];
   content: string;
 };
@@ -44,7 +44,12 @@ export default function NewRegisterPage({
       authorId: currentUser.id,
       authorRole: currentUser.role,
       authorName: currentUser.name,
-      childId: currentUser.role === "Child" ? currentUser.id : children && children.length > 0 ? children[0].id : null,
+      childId:
+        currentUser.role === "Child"
+          ? currentUser.id
+          : children && children.length > 0
+          ? children[0].id
+          : null,
       symptoms: [],
       content: "",
     },
@@ -66,7 +71,7 @@ export default function NewRegisterPage({
     <PageContainer isLoading={isLoading} error={error}>
       <Header
         headerType="goBack"
-        name="John Doe"
+        name={currentUser.name}
         profileImage="https://github.com/diego3g.png"
       />
       <Typography
