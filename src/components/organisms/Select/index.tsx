@@ -4,6 +4,8 @@ import { FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "./styles";
 import { Typography } from "@/components/atomics/Typography";
+import { usePathnameColor } from "@/hooks/usePathnameColor";
+import { useTheme } from "styled-components";
 
 interface SelectItem {
   id: number;
@@ -26,10 +28,23 @@ export const Select: React.FC<SelectProps> = ({ itens, onSelect }) => {
     onSelect(item);
   };
 
+  const { tabColor } = usePathnameColor();
+  const theme = useTheme();
+
+  // @ts-ignore
+  const colorAvatar = theme.colors[tabColor as Colors].split("#")[1];
+
+  const profileImageAvatar = (name: string) =>
+    `https://ui-avatars.com/api/?size=64&background=${colorAvatar}&color=fff&name=${encodeURI(
+      name
+    )}`;
+
   return (
     <>
       <S.SelectContainer onPress={() => setIsOpen(!isOpen)}>
-        <S.ProfileImage source={{ uri: "https://github.com/diego3g.png" }} />
+        <S.ProfileImage
+          source={{ uri: profileImageAvatar(selectedItem.name) }}
+        />
         <S.InfoContainer>
           <Typography
             style={{

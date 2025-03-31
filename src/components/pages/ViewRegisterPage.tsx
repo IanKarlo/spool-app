@@ -5,6 +5,7 @@ import { Typography } from "@/components/atomics/Typography";
 import { Tag } from "@/components/molecules/Tag";
 import { useTheme } from "styled-components/native";
 import Profile from "@/components/atomics/Profile";
+import { usePathnameColor } from "@/hooks/usePathnameColor";
 
 export const roleMap: {
   [key: string]: string;
@@ -46,6 +47,16 @@ export default function ViewRegisterPage({
 
     return `${dia}/${mes}/${ano} às ${hora}h${minuto}`;
   }
+
+  const { tabColor } = usePathnameColor();
+
+  // @ts-ignore
+  const colorAvatar = theme.colors[tabColor as Colors].split("#")[1];
+
+  const profileImageAvatar = (name: string) =>
+    `https://ui-avatars.com/api/?size=64&background=${colorAvatar}&color=fff&name=${encodeURI(
+      name
+    )}`;
 
   return (
     <PageContainer isLoading={isLoading} error={error}>
@@ -119,7 +130,7 @@ export default function ViewRegisterPage({
                 }}
               >
                 <Profile
-                  uri={"https://github.com/diego3g.png"}
+                  uri={profileImageAvatar(child.name)}
                   color="blue"
                   size={48}
                 />
@@ -159,12 +170,7 @@ export default function ViewRegisterPage({
             }}
           >
             {record.symptoms.map((symptom, index) => (
-              <Tag
-                key={index}
-                color="blue"
-                label={symptom}
-                variant="active"
-              />
+              <Tag key={index} color="blue" label={symptom} variant="active" />
             ))}
           </View>
         </View>
