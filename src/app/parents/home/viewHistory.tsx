@@ -6,12 +6,12 @@ import { router } from "expo-router"
 import { useParents } from "@/contexts/ParentsContext"
 
 export default function Home() {
-  const { childRecords } = useParents();
+  const { childRecords, user } = useParents();
 
 
   return (
     <PageContainer>
-      <Header name="John Doe" profileImage="https://github.com/diego3g.png" headerType="goBack" />
+      <Header name={user?.name || ''} profileImage="https://github.com/diego3g.png" headerType="goBack" />
       <Typography
         style={{
           fontSize: 24,

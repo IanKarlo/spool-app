@@ -4,19 +4,21 @@ import { TextField } from "@/components/atomics/TextField";
 import { Typography } from "@/components/atomics/Typography";
 import Header from "@/components/molecules/Header";
 import { Tag } from "@/components/molecules/Tag";
+import { useParents } from "@/contexts/ParentsContext";
 import { theme } from '@/themes'
 import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 
 export default function addTherapist() {
+  const { user } = useParents();
 
   return (
     <PageContainer>
       <Header
         headerType = "goBack"
-        name="John Doe"
-        profileImage="https://github.com/diego3g.png"
+        name={user?.name || ''}
+        profileImage={`https://api.dicebear.com/9.x/adventurer/png?seed=${encodeURI(user?.name ?? '')}`}
       />
     <Typography style={{ fontSize: 24, fontFamily: 'TTChocolates-Medium' }} color="blue">Adicionar Terapeuta</Typography>
       <View style={{ gap: 12 }}>

@@ -29,17 +29,14 @@ export default function Teaching() {
     return { educationistsRecords };
   }, [childRecords]);
 
-  function viewTeacher() {
-    router.push("/parents/teaching/viewTeacher");
+  function educationistProfile(id: number) {
+    router.push(`/parents/teaching/educationistProfile/${id}`);
   }
-  function teacherList() {
-    router.push("/parents/teaching/teacherList");
+  function teachers() {
+    router.push("/parents/teaching/teachers");
   }
-  function viewCarer() {
-    router.push("/parents/teaching/viewCarer");
-  }
-  function carerList() {
-    router.push("/parents/teaching/carerList");
+  function carers() {
+    router.push("/parents/teaching/carers");
   }
   function viewHistory() {
     router.push("/parents/teaching/viewHistory");
@@ -51,8 +48,8 @@ export default function Teaching() {
   return (
     <PageContainer isLoading={isLoading} error={error}>
       <Header name={user?.name ?? ''} profileImage={`https://api.dicebear.com/9.x/adventurer/png?seed=${encodeURI(user?.name ?? '')}`} subtitle1="Ensino do"/>
-      <CarouselList itens={professors} crFn={teacherList} title='Professores' cardFn={viewTeacher}  />
-      <CarouselList itens={caretakers} crFn={carerList} title='Cuidadores' cardFn={viewCarer}  />
+      <CarouselList itens={professors} crFn={teachers} title='Professores' cardFn={educationistProfile}  />
+      <CarouselList itens={caretakers} crFn={carers} title='Cuidadores' cardFn={educationistProfile}  />
       <RegisterHistory data={educationistsRecords} cardFn={viewRegister} historyFn={viewHistory} />
     </PageContainer>
   );

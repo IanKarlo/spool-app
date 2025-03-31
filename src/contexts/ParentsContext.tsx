@@ -1,4 +1,5 @@
-import { useGetChildEducationist, useGetChildRecord, useGetUserByToken } from "@/services/apiService";
+import { useGetChildEducationist, useGetChildEducationistRecord, useGetChildRecord, useGetChildTherapist
+  ,useGetUserByToken } from "@/services/apiService";
 import type React from "react";
 import { createContext, useContext, useMemo } from "react";
 import { useUser } from "./UserContext";
@@ -7,6 +8,7 @@ type ParentsContextType = {
   user: getUserResponse["data"] | undefined;
   childRecords: ChildRecord[] | undefined;
   childEducationist: getChildEducationistResponse["data"] | undefined;
+  childTherapist: getChildTherapistResponse["data"] | undefined;
   isLoading: boolean;
   error: Error | null;
 };
@@ -28,6 +30,12 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
     isLoading: isLoadingChildEducationist,
   } = useGetChildEducationist(userId);
 
+  const {
+    data: childTherapistData,
+    isLoading: isLoadingChildTherapist,
+    error: errorChildTherapist,
+  } = useGetChildTherapist(userId);
+
   const childRecords = useMemo(
     () => getChildRecordData?.data,
     [getChildRecordData]
@@ -38,14 +46,19 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
     [childEducationistData]
   );
 
+  const childTherapist = useMemo(
+    () => childTherapistData?.data,
+    [childTherapistData]
+  );
+
   const isLoading = useMemo(
-    () => isLoadingUser || isLoadingChildRecord || isLoadingChildEducationist,
-    [isLoadingUser, isLoadingChildRecord, isLoadingChildEducationist]
+    () => isLoadingUser || isLoadingChildRecord || isLoadingChildEducationist || isLoadingChildTherapist,
+    [isLoadingUser, isLoadingChildRecord, isLoadingChildEducationist, isLoadingChildTherapist]
   );
 
   const error = useMemo(
-    () => errorUser || errorChildRecord || errorChildEducationist,
-    [errorUser, errorChildRecord, errorChildEducationist]
+    () => errorUser || errorChildRecord || errorChildEducationist || errorChildTherapist,
+    [errorUser, errorChildRecord, errorChildEducationist, errorChildTherapist]
   );
 
   return (
@@ -53,6 +66,7 @@ export function ParentsProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         childRecords,
+        childTherapist,
         childEducationist,
         isLoading,
         error,
