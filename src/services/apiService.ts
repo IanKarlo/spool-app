@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000/api", // Replace with your API base URL
+  baseURL: "http://138.197.240.62/api", // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests
   headers: {
     "Content-Type": "application/json",
@@ -128,7 +128,7 @@ export const usePostRecord = () => {
       authorId: number;
       authorRole: string;
       authorName: string;
-      symptoms: number[];
+      symptoms: string[];
       content: string;
     }) => {
       try {
@@ -245,7 +245,7 @@ export const useGetEducationistChild = (educationistId: number | null) => {
         throw error;
       }
     },
-    enabled: !!educationistId
+    enabled: !!educationistId,
   });
 };
 
@@ -319,7 +319,7 @@ export const usePostNotificationToken = () => {
         console.error("Erro na API POST Token de Notificação:", error);
         throw error;
       }
-      },
+    },
   });
 };
 
