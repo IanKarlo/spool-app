@@ -6,9 +6,10 @@ import { View } from "react-native";
 import { RegisterCard } from "@/components/organisms/RegisterCard";
 import { useTherapist } from "@/contexts/TherapistContext";
 import { useGetUnreadRecords, usePostRead } from "@/services/apiService";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { formatAlertsByDay } from "@/app/educators/alerts";
 import { roleMap } from "@/components/pages/ViewRegisterPage";
+import { useQueryClient } from "@tanstack/react-query";
 
 const today = new Date();
 const yesterday = new Date(
@@ -55,7 +56,9 @@ function makeDays(
 
 export default function Alerts() {
   const { user } = useTherapist();
-  const { mutate } = usePostRead();
+  const { mutateAsync } = usePostRead();
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   if (!user) return null;
 
@@ -67,12 +70,15 @@ export default function Alerts() {
     return formatAlertsByDay(data.data);
   }, [data]);
 
-  function viewRegister(id: number) {
+  async function viewRegister(id: number) {
     router.push(`/therapist/home/viewRegister/${id}`);
-    // console.log("viewRegister", id);
-    // console.log("user.id", user?.id);
-    // console.log("user.role", user?.role);
-    if (user) mutate({ recordId: id, userId: user.id, userRole: user.role });
+    if (user) {
+      setLoading(true);
+      await mutateAsync({ recordId: id, userId: user.id, userRole: user.role });
+      queryClient.invalidateQueries({ queryKey: ["getUnreadRecords"] });
+      await queryClient.refetchQueries({ queryKey: ["getUnreadRecords"] });
+      setLoading(false);
+    }
   }
 
   return (
@@ -83,8 +89,13 @@ export default function Alerts() {
         profileImage="https://github.com/diego3g.png"
       />
       <View style={{ gap: 12 }}>
-        {alertsByDay.length > 0 && alertsByDay.map((data, index) => makeDays(data, index, viewRegister))}
-        {alertsByDay.length == 0 && <Typography style={{ textAlign: "center", fontSize: 20 }}>Você não possui nenhum registro não lido</Typography>}
+        {alertsByDay.length > 0 &&
+          alertsByDay.map((data, index) => makeDays(data, index, viewRegister))}
+        {alertsByDay.length == 0 && (
+          <Typography style={{ textAlign: "center", fontSize: 20 }}>
+            Você não possui nenhum registro não lido
+          </Typography>
+        )}
       </View>
     </PageContainer>
   );
