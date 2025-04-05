@@ -86,11 +86,11 @@ function makeDays(
 
 export default function Alerts() {
   const { user } = useEducators();
-  // const { mutate } = usePostRead();
+  const { mutate } = usePostRead();
 
   if (!user) return null;
 
-  const { data, isLoading, error } = useGetUnreadRecords(user.id);
+  const { data, isLoading, error } = useGetUnreadRecords(user.id, user.role);
 
   const alertsByDay = useMemo(() => {
     if (!data) return [];
@@ -103,7 +103,7 @@ export default function Alerts() {
     // console.log("viewRegister", id);
     // console.log("user.id", user?.id);
     // console.log("user.role", user?.role);
-    // if (user) mutate({ recordId: id, userId: user.id, userRole: user.role });
+    if (user) mutate({ recordId: id, userId: user.id, userRole: user.role });
   }
 
   return (
@@ -114,7 +114,8 @@ export default function Alerts() {
         profileImage="https://github.com/diego3g.png"
       />
       <View style={{ gap: 12 }}>
-        {alertsByDay.map((data, index) => makeDays(data, index, viewRegister))}
+        {alertsByDay.length > 0 && alertsByDay.map((data, index) => makeDays(data, index, viewRegister))}
+        {alertsByDay.length == 0 && <Typography style={{ textAlign: "center", fontSize: 20 }}>Você não possui nenhum registro não lido</Typography>}
       </View>
     </PageContainer>
   );

@@ -2,6 +2,7 @@ import { PageContainer } from "@/components/atomics/PageContainer";
 import Header from "@/components/molecules/Header";
 import { Button } from "@/components/atomics/Button";
 import { RegisterHistory } from "@/components/organisms/History";
+import { Text } from "react-native";
 
 type ChildProfilePageProps = {
   addRegister: () => void;

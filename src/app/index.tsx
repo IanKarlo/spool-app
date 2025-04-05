@@ -1,17 +1,53 @@
 import { Button } from '@/components/atomics/Button'
-import { useTheme } from 'styled-components'
-import { Link, router } from 'expo-router'
-import React, { useEffect, useState } from 'react'
+import { router } from 'expo-router'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Image, View, Alert } from 'react-native'
 import { TextField } from '@/components/atomics/TextField'
 import { useUser } from '@/contexts/UserContext'
 import { PageContainer } from '@/components/atomics/PageContainer'
+import { usePostNotificationToken } from '@/services/apiService'
 const SpoolLogo = require('../../assets/images/spool-blue.png')
+import { useDeviceToken } from '@/contexts/DeviceTokenContext'
+import { usePushNotifications } from '@/hooks/useNotification'
+
 
 export default function Index() {
   const [token, setToken] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const { setUserToken, user, isLoading, error, resetUser } = useUser()
+  const { mutateAsync: postNotificationToken } = usePostNotificationToken()
+
+  const { expoPushToken } = usePushNotifications();
+
+  const handleUserLogin = useCallback(async (user: getUserResponse["data"]) => {
+    //handling device token
+    if (!expoPushToken) {
+      Alert.alert("Errou ao realizar o cadastro", "Por favor, tente novamente", [{ text: 'OK', onPress: () => setToken('') }])
+      return;
+    }
+
+    try {
+      await postNotificationToken({
+        userId: user.id,
+        deviceToken: `${expoPushToken.data}`,
+        userRole: user.role
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  
+    switch (user.role) {
+      case 'Child':
+        router.push('./parents')
+        break
+      case 'Educationist':
+        router.push('./educators')
+        break
+      case 'Therapist':
+        router.push('./therapist')
+        break
+    }
+  }, [expoPushToken])
 
   const onSubmit = (token: string) => {
     setSubmitted(true)
@@ -22,17 +58,7 @@ export default function Index() {
     if (submitted && !isLoading) {
       setSubmitted(false)
       if (user) {
-        switch (user.role) {
-          case 'Child':
-            router.push('./parents')
-            break
-          case 'Educationist':
-            router.push('./educators')
-            break
-          case 'Therapist':
-            router.push('./therapist')
-            break
-        }
+        handleUserLogin(user)
       } else {
         Alert.alert("Token inválido", "Por favor, insira um token válido", [{ text: 'OK', onPress: () => setToken('') }])
       }

@@ -1,6 +1,4 @@
 import { Stack, usePathname } from 'expo-router'
-import { usePushNotifications } from '@/hooks/useNotification'
-import { useEffect } from 'react'
 import { ThemeProvider } from 'styled-components/native'
 import { theme } from '@/themes'
 import { useFonts } from 'expo-font'
@@ -20,14 +18,6 @@ export default function RootLayout() {
   const pathname = usePathname()
 
   console.log(pathname)
-
-  // const { expoPushToken} = usePushNotifications();
-
-  // useEffect(() => {
-  //   if (expoPushToken) {
-  //     console.log('Push token received: ', expoPushToken);
-  //   }
-  // }, [expoPushToken])
 
   if (!fontsLoaded) {
     return null

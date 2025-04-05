@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://138.197.240.62/api", // Replace with your API base URL
+  baseURL: "https://concise-kit-sweet.ngrok-free.app/api", // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests
   headers: {
     "Content-Type": "application/json",
@@ -45,6 +45,7 @@ export const useGetChildTherapistRecord = (
     queryKey: ["getChildTherapistRecord", childId, therapistId],
     queryFn: async () => {
       try {
+        console.log("getChildTherapistRecord", `/record/child/${childId}/therapist/${therapistId}`);
         const response = await apiClient.get<getChildTherapistRecordResponse>(
           `/record/child/${childId}/therapist/${therapistId}`
         );
@@ -284,13 +285,13 @@ export const usePostTherapist = () => {
   });
 };
 
-export const useGetUnreadRecords = (userId: number | null) => {
+export const useGetUnreadRecords = (userId: number | null, userRole: UserRole) => {
   return useQuery({
     queryKey: ["getUnreadRecords", userId],
     queryFn: async () => {
       try {
         const response = await apiClient.get<getUnreadRecordsResponse>(
-          `/alerts/${userId}`
+          `/alerts/${userId}?role=${userRole}`
         );
         return response.data;
       } catch (error) {
