@@ -1,8 +1,9 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import Constants from "expo-constants";
 
 const apiClient = axios.create({
-  baseURL: "https://concise-kit-sweet.ngrok-free.app/api", // Replace with your API base URL
+  baseURL: `http://${Constants.expoConfig?.hostUri?.split(":")[0]}:3000/api`, // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests
   headers: {
     "Content-Type": "application/json",

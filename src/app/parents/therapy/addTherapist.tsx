@@ -36,7 +36,7 @@ export default function AddTherapistPage() {
   const onSubmit = async (data: FormValues) => {
     try {
       setSubmitting(true);
-      await mutateAsync(data);
+      await mutateAsync({...data, childId: user?.id!});
       queryClient.invalidateQueries({ queryKey: ["getChildTherapist"] });
       queryClient.invalidateQueries({ queryKey: ["getChildTherapistRecord"] });
       reset();

@@ -153,6 +153,7 @@ interface postTherapistBody {
   email: string;
   licenseNumber: string;
   specialization: string;
+  childId: number;
 }
 
 interface postTherapistResponse {
