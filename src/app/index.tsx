@@ -21,19 +21,18 @@ export default function Index() {
 
   const handleUserLogin = useCallback(async (user: getUserResponse["data"]) => {
     //handling device token
-    if (!expoPushToken) {
-      Alert.alert("Errou ao realizar o cadastro", "Por favor, tente novamente", [{ text: 'OK', onPress: () => setToken('') }])
-      return;
-    }
-
-    try {
-      await postNotificationToken({
-        userId: user.id,
-        deviceToken: `${expoPushToken.data}`,
-        userRole: user.role
-      })
-    } catch (error) {
-      console.error(error)
+    if (expoPushToken) {
+      // Alert.alert("Erro ao realizar o cadastro", "Por favor, tente novamente", [{ text: 'OK', onPress: () => setToken('') }])
+      try {
+        await postNotificationToken({
+          userId: user.id,
+          deviceToken: `${expoPushToken.data}`,
+          userRole: user.role
+        })
+      } catch (error) {
+        console.error(error)
+      }
+      // return;
     }
   
     switch (user.role) {
