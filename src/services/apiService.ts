@@ -3,11 +3,10 @@ import axios from "axios";
 import Constants from "expo-constants";
 
 const apiClient = axios.create({
-  baseURL: `http://${Constants.expoConfig?.hostUri?.split(":")[0]}:3000/api`, // Replace with your API base URL
+  baseURL: `https://concise-kit-sweet.ngrok-free.app/api`, // Replace with your API base URL
   timeout: 10000, // Set a timeout for requests
   headers: {
     "Content-Type": "application/json",
-    "if-none-match": "nah",
   },
 });
 
@@ -46,7 +45,10 @@ export const useGetChildTherapistRecord = (
     queryKey: ["getChildTherapistRecord", childId, therapistId],
     queryFn: async () => {
       try {
-        console.log("getChildTherapistRecord", `/record/child/${childId}/therapist/${therapistId}`);
+        console.log(
+          "getChildTherapistRecord",
+          `/record/child/${childId}/therapist/${therapistId}`
+        );
         const response = await apiClient.get<getChildTherapistRecordResponse>(
           `/record/child/${childId}/therapist/${therapistId}`
         );
@@ -286,7 +288,10 @@ export const usePostTherapist = () => {
   });
 };
 
-export const useGetUnreadRecords = (userId: number | null, userRole: UserRole) => {
+export const useGetUnreadRecords = (
+  userId: number | null,
+  userRole: UserRole
+) => {
   return useQuery({
     queryKey: ["getUnreadRecords", userId],
     queryFn: async () => {
